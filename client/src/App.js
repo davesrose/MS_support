@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 import Main from "./pages/Main";
 import NoMatch from "./pages/NoMatch";
 
@@ -9,6 +11,8 @@ const App = () =>
     <div>
       <Switch>
       	<Route exact path="/" component={Main} />
+        <Route exact path="/signup" component={Signup} />
+        <Route exact path="/login" component={Login} />
         <Route component={NoMatch} />
       </Switch>
     </div>
