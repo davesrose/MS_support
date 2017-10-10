@@ -7,7 +7,8 @@ class Login extends Component {
   state = {
     user: [],
     email: "",
-    password: ""
+    password: "",
+    isModalOpen: false
   };
 
   handleInputChange = event => {
@@ -31,6 +32,9 @@ class Login extends Component {
           }, 1000);
         } else {
           this.setState({ user: res.data.response, email: "", password: ""});
+          document.getElementById("loginModal").dataset.show = "hide";
+          //isModalOpen: !this.state.isModalOpen;
+          document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
         }
     })
       .catch(err => console.log(err));

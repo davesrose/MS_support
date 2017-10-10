@@ -269,3 +269,11 @@ input[type=range]:focus::-ms-fill-upper {
 	width: 800px;
 	margin: 18px auto;
 }
+
+.eventsForm input, .eventsForm textarea {
+	width: 760px;
+	margin-bottom: 10px;
+}
+.eventsForm label {
+	margin-bottom: -5px;
+}

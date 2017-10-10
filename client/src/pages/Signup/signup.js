@@ -24,16 +24,7 @@ class Signup extends Component {
 
       const email = this.state.email;
       const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      // function validate(email) {
-      //    if (validateEmail(email)) {
-      //     return email;
-      //    } else {
-      //     const email = undefined;
-      //     alert("Not a valid e-mail address");
-      //   }
-      // }        
-      // validate(this.state.email);
-      // console.log(email);
+
       if (re.test(email)) {
           API.register({
             name: this.state.name,
@@ -43,6 +34,8 @@ class Signup extends Component {
           .then(res => {
             console.log(res);
             this.setState({ user: res.data.response, name: "", email: "", password: ""});
+            document.getElementById("loginModal").style.display = "none";
+            document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
           })
           .catch(err => {
             if (err === "Error: Request failed with status code 422") alert("email already used");

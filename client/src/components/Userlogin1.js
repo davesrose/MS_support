@@ -19,7 +19,7 @@ class UserLogin extends Component {
   }   
   render() {
     return (
-	  <div className="modal fade" id="loginModal" role="dialog" data-show="true" >
+	  <div className="modal fade" id="loginModal" role="dialog">
 		  <div className="modal-dialog">
 
 		    <div className="modal-content">

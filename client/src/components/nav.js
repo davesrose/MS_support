@@ -14,13 +14,13 @@ class Nav extends Component {
       <nav>
         <div className="Name">MS Connect</div>
           <ul className="mainNavigation">
-            <li>About MS</li>
-            <li>Info</li>
-            <li>Events</li>
+            <a href="/"><li>About MS</li></a>
+            <a href="/about"><li>Info</li></a>
+            <a href="/events"><li>Events</li></a>
             <li className="end">Profile</li>
           </ul>
           <div className="clear"></div>
-          <div className="logIn" data-toggle="modal" data-target="#loginModal" onClick={this.hideSignIn}><p>Log In</p></div>
+          <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModal" onClick={this.hideSignIn}><p>Log In</p></div>
           <UserLogin />
       </nav>
     )
