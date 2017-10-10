@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AboutMS from "./about-ms";
-import Nav from "../components/nav"
+import Nav from "../components/nav";
 //import API from "../utils/API";
 
 class Main extends Component {

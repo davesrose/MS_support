@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import Jumbotron from "../../components/Jumbotron";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
-import Panel from "../../components/Panel";
 
 class Signup extends Component {
   state = {
@@ -23,56 +21,80 @@ class Signup extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.name && this.state.email && this.state.password) {
-      API.register({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .then(res => this.setState({ user: res.data.response, name: "", email: "", password: ""}))
-      .catch(err => console.log(err));
+
+      const email = this.state.email;
+      const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      // function validate(email) {
+      //    if (validateEmail(email)) {
+      //     return email;
+      //    } else {
+      //     const email = undefined;
+      //     alert("Not a valid e-mail address");
+      //   }
+      // }        
+      // validate(this.state.email);
+      // console.log(email);
+      if (re.test(email)) {
+          API.register({
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password
+          })
+          .then(res => {
+            console.log(res);
+            this.setState({ user: res.data.response, name: "", email: "", password: ""});
+          })
+          .catch(err => {
+            if (err === "Error: Request failed with status code 422") alert("email already used");
+            console.log(err);
+
+          });
+
+      } else {
+        alert("enter a valid e-mail address");
+      }
     }
   };
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <Jumbotron>
-              <h1 className="text-center"><i className="fa fa-newspaper-o"></i> Sign up</h1>
-            </Jumbotron>
-            <Panel icon="fa fa-list-alt" heading="Search Parameters">
-              <form>
-                <Input
-                  value={this.state.name}
-                  onChange={this.handleInputChange}
-                  name="name"
-                  placeholder="name"
-                />
-                <Input
-                  value={this.state.email}
-                  onChange={this.handleInputChange}
-                  name="email"
-                  placeholder="email"
-                />
-                <Input
-                  value={this.state.password}
-                  onChange={this.handleInputChange}
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                />
-                <FormBtn
-                  disabled={!this.state.name}
-                  onClick={this.handleFormSubmit}
-                >
-                  Submit
-                </FormBtn>
-              </form>
-            </Panel>
-          </Col>
-        </Row>
-      </Container>
+      <div id="signIn">
+        <Container fluid>
+          <Row>
+            <Col size="md-10 md-offset-1">
+
+                <form>
+                  <Input
+                    value={this.state.name}
+                    onChange={this.handleInputChange}
+                    name="name"
+                    placeholder="name"
+                  />
+                  <Input
+                    value={this.state.email}
+                    onChange={this.handleInputChange}
+                    name="email"
+                    placeholder="email"
+                  />
+                  <Input
+                    value={this.state.password}
+                    onChange={this.handleInputChange}
+                    name="password"
+                    placeholder="password"
+                    type="password"
+                  />
+                  <FormBtn
+                    disabled={!this.state.name}
+                    onClick={this.handleFormSubmit}
+                  >
+                    Submit
+                  </FormBtn>
+                </form>
+
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }

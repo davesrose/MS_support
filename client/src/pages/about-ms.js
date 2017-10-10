@@ -21,7 +21,7 @@ class AboutMS extends Component {
 
 		  // Event listener for the play/pause button
 		  playButton.addEventListener("click", function() {
-		    if (video.paused == true) {
+		    if (video.paused === true) {
 		      // Play the video
 		      video.play();
 
@@ -41,7 +41,7 @@ class AboutMS extends Component {
 		  });
 		  // Event listener for the mute button
 		  muteButton.addEventListener("click", function() {
-		    if (video.muted == false) {
+		    if (video.muted === false) {
 		      // Mute the video
 		      video.muted = true;
 
