@@ -3,7 +3,7 @@ import UserLogin from "./Userlogin";
 
 class Nav extends Component {
   hideSignIn = event => {
-    const signDiv = document.getElementById("signIn");
+      const signDiv = document.getElementById("signIn");
       const logDiv = document.getElementById("logIn");
       signDiv.style.display = "none";
       logDiv.style.visibility = "block";

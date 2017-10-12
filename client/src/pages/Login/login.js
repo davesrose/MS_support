@@ -32,7 +32,7 @@ class Login extends Component {
           }, 1000);
         } else {
           this.setState({ user: res.data.response, email: "", password: ""});
-          document.getElementById("loginModal").dataset.show = "hide";
+          document.getElementById("loginSubmit").dataset.dismiss = "modal";
           //isModalOpen: !this.state.isModalOpen;
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
         }
@@ -65,6 +65,7 @@ class Login extends Component {
                   <FormBtn
                     disabled={!this.state.email || !this.state.password}
                     onClick={this.handleFormSubmit}
+                    id="loginSubmit"
                   >
                     Submit
                   </FormBtn>
