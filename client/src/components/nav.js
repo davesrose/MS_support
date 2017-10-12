@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import UserLogin from "./Userlogin";
+import $ from "jquery"
 
 class Nav extends Component {
+
   hideSignIn = event => {
+    $("#loginModal").show();
       const signDiv = document.getElementById("signIn");
       const logDiv = document.getElementById("logIn");
       signDiv.style.display = "none";
@@ -20,10 +23,12 @@ class Nav extends Component {
             <li className="end">Profile</li>
           </ul>
           <div className="clear"></div>
-          <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModal" onClick={this.hideSignIn}><p>Log In</p></div>
+          <div className="logIn" id="logInBttn" onClick={this.hideSignIn}><p>Log In</p></div>
           <UserLogin />
       </nav>
     )
   }
 }
 export default Nav;
+
+// data-toggle="modal" data-target="#loginModal"

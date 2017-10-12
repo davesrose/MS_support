@@ -1,8 +1,10 @@
 $(document).ready(function() {
+	var docHeight = $(document).height();
+	$(".mainContainer").css({ "height": docHeight-70 });
 	$(".meetTeam").css({"height": "0px", "overflow": "hidden"});
 	$(".personBody").css({"height": "0px", "overflow": "hidden", "padding-top": "0px", "padding-bottom": "0px"});
 
-	if ($("#loginSubmit").data("dismiss", "modal")) $("#loginModal").modal("hide");
+	$("#loginModal").hide();
 
 	(function($) { //a function for creating a click toggle
 	    $.fn.clickToggle = function(func1, func2) {
