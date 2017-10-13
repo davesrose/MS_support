@@ -42,9 +42,11 @@ class UserLogin extends Component {
 			        <h4 className="modal-title">Log In</h4>
 			      </Modal.Header>
 			      <Modal.Body>
-			        <SignIn />
-			        <LogIn />
-			        <a id="signInLink" onClick={this.signIn}>Sign Up</a>
+			      	<div>
+			        	<SignIn />
+			        	<LogIn />
+			        	<a id="signInLink" onClick={this.signIn}>Sign Up</a>
+			        </div>
 			      </Modal.Body>
 			      <Modal.Footer>
 			        <button className="btn btn-default" data-dismiss="modal" onClick={this.close}>Close</button>
@@ -56,3 +58,26 @@ class UserLogin extends Component {
 	}
 }
 export default UserLogin;
+
+
+
+		  // <div id="loginModalBox" className="modal fade" role="dialog" data-show="true" >
+	 		//   <div className="modal-dialog">
+	 
+	 		//     <div className="modal-content">
+	 		//       <div className="modal-header">
+	 		//         <button type="button" className="close" data-dismiss="modal">&times;</button>
+	 		//         <h4 className="modal-title">Log In</h4>
+	 		//       </div>
+	 		//       <div className="modal-body">
+	 		//         <SignIn />
+	 		//         <LogIn />
+	 		//         <a id="signInLink" onClick={this.signIn}>Sign Up</a>
+	 		//       </div>
+	 		//       <div className="modal-footer">
+	 		//         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+	 		//       </div>
+	 		//     </div>
+	 
+	 		//   </div>
+	 	 //  </div>

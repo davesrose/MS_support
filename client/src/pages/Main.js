@@ -20,8 +20,10 @@ const Main = () =>
         		<Route component={NoMatch} />
     		</Switch>
             </div>
-            <Footer />		
+            <Footer /> 		
     	</div>       
 	</Router>;
 
 export default Main;
+
+// <Footer />

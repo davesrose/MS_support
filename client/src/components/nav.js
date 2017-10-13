@@ -23,7 +23,7 @@ class Nav extends Component {
             <li className="end">Profile</li>
           </ul>
           <div className="clear"></div>
-          <div className="logIn" id="logInBttn" onClick={this.hideSignIn}><p>Log In</p></div>
+          <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModalBox" onClick={this.hideSignIn}><p>Log In</p></div>
           <UserLogin />
       </nav>
     )

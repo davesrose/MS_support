@@ -1,6 +1,12 @@
 $(document).ready(function() {
-	var docHeight = $(document).height();
-	$(".mainContainer").css({ "height": docHeight-70 });
+
+	window.addEventListener("resize", function() {
+		$(".mainContainer").css({ "min-height": $(window).height()-70 });
+	});
+
+	$(".mainContainer").css({ "min-height": $(window).height()-70 });
+
+
 	$(".meetTeam").css({"height": "0px", "overflow": "hidden"});
 	$(".personBody").css({"height": "0px", "overflow": "hidden", "padding-top": "0px", "padding-bottom": "0px"});
 
