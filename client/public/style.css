@@ -331,6 +331,7 @@ footer .meetTeamLink:hover {
 	height: 70px;
 	margin-top: 0px;
 	margin-right: 0px;
+	cursor: pointer;
 }
 footer .meetTeam {
 	position: absolute;
@@ -363,6 +364,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 	border-top: solid 1px #444;
 	border-left: solid 1px #AAA;
 	border-right: solid 1px #AAA;
+	cursor: pointer;
+}
+.teamTitle {
+	height: 25px;
+	background: #a4d1f4;
+	border-top-right-radius: 10px:
+	border-top-left-radius: 10px: 
+}
+.teamTitle:hover {
+	background: #c6e0f4;
+	cursor: pointer;
+}
+.teamTitle button {
+	margin-right: 10px;
+	margin-top: 3px;
 }
 .personHeader img {
 	margin: 5px 10px 5px 22px;

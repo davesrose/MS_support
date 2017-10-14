@@ -1,12 +1,21 @@
 import React, { Component } from "react";
+import $ from "jquery";
 
 class Footer extends Component {
+
+  collapse() {
+    $(".meetTeam").animate({
+        height: 0
+    }, 1000);    
+  }
 
   render() {
 
     return (
       <footer>
           <div className="meetTeam">
+
+            <div className="teamTitle" onClick={this.collapse}><button type="button" className="close">&times;</button></div>
 
              <div className="personContainer">
               <div className="personHeader">
