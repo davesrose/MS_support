@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import $ from "jquery";
 
 class Login extends Component {
   state = {
     user: [],
     email: "",
     password: "",
-    isModalOpen: false
+    showModal: true
   };
 
   handleInputChange = event => {
@@ -33,8 +34,11 @@ class Login extends Component {
           }, 1000);
         } else {
           this.setState({ user: res.data.response, email: "", password: ""});
-          document.getElementById("loginModal").dataset.show = "hide";
+          document.getElementById("loginSubmit").dataset.dismiss = "modal";
+          //this.setState({ showModal: false });
+          $("#loginModal").hide();
           //isModalOpen: !this.state.isModalOpen;
+          //$("#loginModal").dataset.show = "false";
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
         }
     })
@@ -67,6 +71,7 @@ class Login extends Component {
                   <FormBtn
                     disabled={!this.state.email || !this.state.password}
                     onClick={this.handleFormSubmit}
+                    id="loginSubmit"
                   >
                     Submit
                   </FormBtn>

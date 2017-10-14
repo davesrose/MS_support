@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import API from "../../utils/API";
 import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
+import $ from "jquery"
 
 class Signup extends Component {
   state = {
@@ -34,7 +35,7 @@ class Signup extends Component {
           .then(res => {
             console.log(res);
             this.setState({ user: res.data.response, name: "", email: "", password: ""});
-            document.getElementById("loginModal").style.display = "none";
+            $("#loginModal").hide();
             document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
           })
           .catch(err => {

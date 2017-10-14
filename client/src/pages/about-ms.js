@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+const pushStyle = {
+	"margin-bottom": "70px"
+}
 
 class AboutMS extends Component {
 
@@ -104,7 +107,7 @@ class AboutMS extends Component {
 	}
   render() {
     return (
-	  <div className="mainContent">
+	  <div className="mainContent" style={pushStyle}>
 	    <div className="heading">
 	      <h3 className="text-center">About Multiple Sclerosis</h3>
 	    </div>
