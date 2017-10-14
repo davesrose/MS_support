@@ -5,13 +5,23 @@ var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/ms_support";
 
 //new profile info passed argument will be newUser
-const newUserName = "Edna";
-const newAgeRange = "20-29";
+const newUserEmail = "edna@gmail.com";
+const newAgeRange = 19;
 const newSex = "F";
 const newZip = 30307;
 //
+//const apiKeyZipCode = 'js-okLIlW7Iff1cWtt5AXRrTCDDv5LO0gspAe8VafEpvGBr94xK2pbV1PzwUklVBOkb';
 
-const zipquery = `http://www.zipcodeapi.com/rest/UNMx6LvIWub011J0vWIfGENRfTMGsxfml2UsNpaKTmKVnuVSqE86iVYyOKehhuED/radius.json/${newZip}/30/miles?minimal`;
+//https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/30309/5/miles?minimal
+
+const zipquery = `https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/${newzip}/5/miles?minimal`;
+
+//const zipquery = `http://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=${newZip}&minimumradius=0&maximumradius=50&key=HPFK5BA7MRAI9NOA154O`
+
+axios.get(zipquery).then((err, zipRes) => {
+	if (err) throw err;
+	console.log(zipRes);
+});
 
 const matchUsers = newUser => {
 
@@ -19,23 +29,65 @@ const matchUsers = newUser => {
 	  if (err) throw err;
 	  db.collection("usersearches").find().toArray(function(err, result) {
 	    if (err) throw err;
+	    // axios.get(zipquery).then(zipRes => {
+	    // 	console.log(zipRes);
+	    // });
+	    //console.log(result);
+	 //    let sameArea = false;
+		// const matchedUsersArea = [];
+		// const matchedUsers = [];
+		// axios.get(zipquery).then(zipRes => {
+		//     for (var i=0; i < result.length; i++) {
+				
+		// 		for (var j=0; j < zipRes.length; j++) {
+		// 			if (newzip === zipRes[j]) {
+		// 				return sameArea = true;
 
-	    for (var i=0; i < result.length; i++) {
+		// 		    	if ((sameArea === true) && (result[i].agerange === newAgeRange)) {
+				    		
+		// 		    		matchedUsersArea.push(result[i]);
+		// 		    		console.log(matchedUsersArea);
+		// 				}
 
-	    	if ((result[i].agerange === newAgeRange)) {
-	    		const sameArea = false;
-				axios.get(zipquery).then(zipRes => {
-					for (var j=0; j < zipRes.length; j++) {
-						if (newzip === zipRes[j]) {
-							return sameArea = true;
-						}
-					}
-				});
-			}
+		// 			}
+		// 		}
+		// 	}
+		// });
 
-		}
+		// if (matchedUsersArea.length > 5) {
+		// 	for (var z=0; z < matchedUsersArea.length; z++) {
+		// 		for (var w=0; w < matchedUsersArea.length; w++) {
+		// 			if (matchedUsersArea[w] !== matchedUsersArea[z]) {
+		// 				const randomNum = Math.floor(Math.random() * matchedUsersArea) + 1;
+		// 				matchedUsers.push(matchedUsersArea[randomNum]);
+		// 			}
+		// 		}
+				
+		// 	}
+		// } else {
+		// 	matchedUsers.push(matchedUsersArea);
+		// }
 
+
+		//console.log("matched users for whole area: "+matcedUsersArea);
+		//console.log("matched users: "+matcedUsers);
 	    db.close();
 	  });
 	});
 };
+matchUsers();
+	 //    for (var i=0; i < result.length; i++) {
+
+	 //    	if ((result[i].agerange === newAgeRange)) {
+	 //    		let sameArea = false;
+		// 		axios.get(zipquery).then(zipRes => {
+		// 			for (var j=0; j < zipRes.length; j++) {
+		// 				if (newzip === zipRes[j]) {
+		// 					return sameArea = true;
+		// 				}
+		// 			}
+ 
+		// 		});
+		// 	}
+
+		// }
