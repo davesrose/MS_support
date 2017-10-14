@@ -27,6 +27,7 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
+        console.log(res);
         if (res.data.success === false) {
           setTimeout(() => {
             alert("Authentication failed.  Try again or Sign Up");
@@ -58,6 +59,7 @@ class Login extends Component {
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="email"
+                    type="email"
                   />
                   <Input
                     value={this.state.password}
