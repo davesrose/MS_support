@@ -4,9 +4,9 @@ import UserLogin from "./Userlogin";
 class Nav extends Component {
   hideSignIn = event => {
     const signDiv = document.getElementById("signIn");
-      const logDiv = document.getElementById("logIn");
-      signDiv.style.display = "none";
-      logDiv.style.visibility = "block";
+    const logDiv = document.getElementById("logIn");
+    signDiv.style.display = "none";
+    logDiv.style.visibility = "block";
   }
   render() {
 
@@ -17,7 +17,7 @@ class Nav extends Component {
             <a href="/"><li>About MS</li></a>
             <a href="/about"><li>Info</li></a>
             <a href="/events"><li>Events</li></a>
-            <li className="end">Profile</li>
+            <a href="/profile"><li>Profile</li></a>
           </ul>
           <div className="clear"></div>
           <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModal" onClick={this.hideSignIn}><p>Log In</p></div>

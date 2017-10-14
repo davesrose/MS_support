@@ -41,14 +41,23 @@ module.exports = {
   },
   register: function(req, res) {
     dbUser
-      .create(req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .create(req.body, function(err) {
+        if (err) {
+          return res.json({ success: false, message: 'That email address already exists.'});
+        }
+          return res.json({ success: true, message: 'Successfully created new user.'});
+      }); 
   },
   update: function(req, res) {
     dbUser
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  }
+  },
+  findById: function(req, res) {
+    dbUser
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
 };

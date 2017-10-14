@@ -6,7 +6,7 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 
 router.get('/', function(req, res) {  
-  res.send('Relax. We will put the home page here later.');
+  res.send('To be filled later.');
 });
 
 module.exports = router;

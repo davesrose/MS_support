@@ -68,6 +68,7 @@ class Signup extends Component {
                     onChange={this.handleInputChange}
                     name="email"
                     placeholder="email"
+                    type="email"
                   />
                   <Input
                     value={this.state.password}
