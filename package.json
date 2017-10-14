@@ -16,6 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/davesrose/MS_support.git"
   },
+"engines": {
+  "node": "8.2.1",
+  "yarn": "0.27.5"
+},
   "author": "",
   "license": "ISC",
   "devDependencies": {
