@@ -4,17 +4,17 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
-const passport = require('passport');
+//const passport = require('passport');
 
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // pass the passport middleware
-app.use(passport.initialize());
+//app.use(passport.initialize());
 
 // Bring in defined Passport Strategy
-require('./config/passport')(passport);  
+//require('./config/passport')(passport);  
 
 // Serve up static assets
 app.use(express.static("client/build"));
