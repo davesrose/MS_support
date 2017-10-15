@@ -18,7 +18,7 @@ function checkMagicNumbers(magic) {
 const multer = require('multer')
 const storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, __dirname + '/../../client/build/images/')
+		callback(null, __dirname + '/../../client/public/images/')
 	},
 	filename: function(req, file, callback) {
 		callback(null, file.originalname);
@@ -26,18 +26,18 @@ const storage = multer.diskStorage({
 })
 
 const uploading = multer({ 
-		storage: storage,
-		fileFilter: function(req, file, callback) {
-			const ext = path.extname(file.originalname);
+	storage: storage,
+	fileFilter: function(req, file, callback) {
+		const ext = path.extname(file.originalname);
 
-			//Check for image extension
-			if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-				  req.fileValidationError = 'Wrong file type, please upload images only';
-				  return callback(null, false, new Error(req.fileValidationError));
-			}
-				callback(null, true);
+		//Check for image extension
+		if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+			  req.fileValidationError = 'Wrong file type, please upload images only';
+			  return callback(null, false, new Error(req.fileValidationError));
 		}
-	}).single("userPhoto");
+			callback(null, true);
+	}
+}).single("userPhoto");
 
 // Matches with "/api/upload"
 router.route("/upload")
@@ -45,6 +45,8 @@ router.route("/upload")
   .post(uploading, (req, res, next) => {
   	
   	const filePath = __dirname + '/../../client/build/images/' + req.file.filename;
+  	const relativeFilePath = '/images/' + req.file.filename;
+    
     // Check if the right extension is loaded
     if(req.fileValidationError) {
       // res.end(req.fileValidationError);
@@ -52,10 +54,10 @@ router.route("/upload")
 		}
 
 		//Check for file size
-			if (req.file.size > maxFileSize){
-				req.fileValidationError = 'File is too large, please upload file smaller than 1MB';
-				return res.send({status: 400, success: false, message: req.fileValidationError});
-			}			
+		if (req.file.size > maxFileSize){
+			req.fileValidationError = 'File is too large, please upload file smaller than 1MB';
+			return res.send({status: 400, success: false, message: req.fileValidationError});
+		}			
 
     //Check if the first bytes of the file are truly images
     var bitmap = new Buffer(fs.readFileSync(filePath)).toString('hex', 0, 4);
@@ -65,7 +67,7 @@ router.route("/upload")
 		}
 
 		//If all checks haved passed, upload the file
-		return res.send({success: true, message: 'File Uploaded', path: filePath });
+		return res.send({success: true, message: 'File Uploaded', imgPath: relativeFilePath });
     
   });
 

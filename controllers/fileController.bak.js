@@ -18,12 +18,5 @@ module.exports = {
       }
         return res.end('File is uploaded');
     });
-
-    // upload(req, res, function(err) {
-    //   if (err){
-    //     return res.end("Error uploading file.");
-    //   }
-    //   return res.end('File is uploaded');
-    // })
   }
 };
