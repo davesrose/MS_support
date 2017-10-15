@@ -29,7 +29,7 @@ mongoose.Promise = global.Promise;
 
 if(process.env.NODE_ENV == 'production'){
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
-  mongoose.connect('mongodb://heroku_jhgctt3s:q9jpi6mcqk7urm6p22q44idmk1@ds121225.mlab.com:21225/heroku_jhgctt3s');
+  mongoose.connect('mongodb://heroku_c11287q7:gvcm5of51qgl494kp22uimlh13@ds121225.mlab.com:21225/heroku_c11287q7');
 }
 else{
   mongoose.connect('mongodb://localhost/ms_support');
