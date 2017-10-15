@@ -6,7 +6,6 @@ const Schema = mongoose.Schema;
 // Will be working on it with rest of backend team
 
 const userSchema = new Schema({
-
    firstName: {
     type: String,
     unique: false,
@@ -38,9 +37,12 @@ const userSchema = new Schema({
     type: Number,
     required: false
    },
-   imgPath: {
+   imagePath: {
     type: String
    },
+   ageRange: {
+    type: String
+   },   
    sex: {
     type: String,
     required: false

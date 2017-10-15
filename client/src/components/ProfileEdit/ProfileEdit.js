@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./ImageUpload.css";
+import "./ProfileEdit.css";
 import API from "../../utils/API";
 import { Input, FormBtn, Select } from "../../components/Form";
 
-class ImageUpload extends Component {
+class ProfileEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,11 +14,13 @@ class ImageUpload extends Component {
       email: '',
       password: '',
       zipCode: '',
+      ageRange: '',
       sex: '',
       userCategory: '',
       categoryDescription: '',
       publicProfile: '',
-      imagePreviewUrl: ''
+      imagePreviewUrl: '',
+      imagePath: ''
     };
   }
   
@@ -31,20 +33,21 @@ class ImageUpload extends Component {
   loadProfile = () => {
     API.getUser("59df790e98ae2f3b18ab4ce0")
       .then(res => {
-        console.log(res.data);
         return this.setState({ 
-                  data: res.data,
-                  firstName: res.data.firstName,
-                  lastName: res.data.lastName,
-                  email: res.data.email,
-                  password: res.data.password,
-                  zipCode: res.data.zipCode,
-                  sex: res.data.sex,
-                  userCategory: res.data.userCategory,
-                  categoryDescription: res.data.categoryDescription,
-                  publicProfile: res.data.publicProfile,
-                  imagePreviewUrl: res.data.imgPath 
-                });
+          data: res.data,
+          firstName: res.data.firstName,
+          lastName: res.data.lastName,
+          email: res.data.email,
+          password: res.data.password,
+          zipCode: res.data.zipCode,
+          ageRange: res.data.ageRange,
+          sex: res.data.sex,
+          userCategory: res.data.userCategory,
+          categoryDescription: res.data.categoryDescription,
+          publicProfile: res.data.publicProfile,
+          imagePreviewUrl: res.data.imagePath,
+          imagePath: res.data.imagePath
+        });
       })
       .catch(err => console.log(err));
   }
@@ -53,42 +56,65 @@ class ImageUpload extends Component {
   _handleSubmit(e) {
     e.preventDefault();
 
-    var formData = new FormData(document.getElementById('uploadForm'));
+    const formData = new FormData(document.getElementById('uploadForm'));
+    const uploadData = document.getElementById('uploadForm');
 
+    let updatedProfileData = {};
+    updatedProfileData = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      // email: this.state.email,
+      // password: this.state.password,
+      zipCode: this.state.zipCode,
+      ageRange: this.state.ageRange,
+      sex: this.state.sex,
+      userCategory: this.state.userCategory,
+      categoryDescription: this.state.categoryDescription,
+      publicProfile: this.state.publicProfile,
+      imagePath: this.state.imagePath
+    };
+
+    let _path = "";
+
+    //Upload the image, and grab the URL if successful, then save all the text in the DB
     API.uploadImage(formData)
    .then(res => {
-      console.log(res);
       if (res.data.success === false) {
         setTimeout(() => {
           alert(res.data.message);
         }, 1000);
-      } else {
-        // alert("File Upload Succeeded");
-        API.updateProfile("59df790e98ae2f3b18ab4ce0", {
-          firstName: this.state.title,
-          lastName: this.state.author,
-          // email: this.state.email,
-          // password: this.state.password,
-          zipCode: this.state.zipCode,
-          sex: this.state.sex,
-          userCategory: this.state.userCategory,
-          categoryDescription: this.state.categoryDescription,
-          publicProfile: this.state.publicProfile
-        })
-        .then(resbook => this.loadProfile())
-        .catch(err => console.log(err));
-
-        this.setState({ file: res.data.response, name: '', imagePreviewUrl: ''});
+      } 
+      else {
+        this.setState({ file: res.data.response, imagePath: res.data.imagePath, name: '', imagePreviewUrl: ''});
       }
     })
+    .catch(err => console.log(err));
+    
+
+    console.log(this.state);
+    console.log(updatedProfileData);
+
+    // Now Save the profile data in the DB, including the path of the image, if it were provided
+    
+
+    API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+    .then(resbook => this.loadProfile())
     .catch(err => console.log(err));
   }
 
   handleInputChange = event => {
     const { name, value } = event.target;
+
     this.setState({
       [name]: value
     });
+
+    //Check to only deal with checkboxes
+    if (event.target.type == "checkbox"){
+      this.setState({ 
+        publicProfile: event.target.checked
+      });
+    }
   };
 
   _handleImageChange(e) {
@@ -97,10 +123,12 @@ class ImageUpload extends Component {
     let reader = new FileReader();
     let file = e.target.files[0];
 
+    console.log(file.name);
     reader.onloadend = () => {
       this.setState({
         file: file,
         name: file.name,
+        imagePath: '/images/' + file.name,
         imagePreviewUrl: reader.result
       });
     }
@@ -126,18 +154,7 @@ class ImageUpload extends Component {
           formEncType="multipart/form-data" 
           onSubmit={(e)=>this._handleSubmit(e)}>
           <Input
-            value={this.state.firstName}
-            onChange={this.handleInputChange}
-            name="firstName"
-            placeholder="First Name"
-          />
-          <Input
-            value={this.state.LastName}
-            onChange={this.handleInputChange}
-            name="LastName"
-            placeholder="Last Name"
-          />
-          <Input
+            disabled="true"
             value={this.state.email}
             onChange={this.handleInputChange}
             name="email"
@@ -150,6 +167,18 @@ class ImageUpload extends Component {
             name="password"
             placeholder="password"
             type="password"
+          />          
+          <Input
+            value={this.state.firstName}
+            onChange={this.handleInputChange}
+            name="firstName"
+            placeholder="First Name"
+          />
+          <Input
+            value={this.state.lastName}
+            onChange={this.handleInputChange}
+            name="lastName"
+            placeholder="Last Name"
           />
           <Input
             value={this.state.zipCode}
@@ -157,16 +186,29 @@ class ImageUpload extends Component {
             name="zipCode"
             placeholder="zip Code"
           />
+          <label>Age Range:
+            <Select value={this.state.ageRange} name="ageRange" onChange={this.handleInputChange}>
+              <option value="">Prefer Not to Say</option>
+              <option value="0">18 and under</option>
+              <option value="19">19 - 29</option>
+              <option value="30">30 - 39</option>
+              <option value="40">40 - 49</option>
+              <option value="50">50 - 59</option>
+              <option value="60">60 and Over</option>
+            </Select>
+          </label>
+          <br />          
           <label>Sex:
-            <Select value={this.state.sex} onChange={this.handleChange}>
+            <Select value={this.state.sex} name="sex" onChange={this.handleInputChange}>
+              <option value="">Prefer Not to Say</option>
               <option value="Male">Male</option>
-              <option value="Femal">Female</option>
-              <option value="NA">NA</option>
+              <option value="Female">Female</option>
             </Select>
           </label>
           <br />
           <label>Category: 
-            <Select value={this.state.userCategory} onChange={this.handleChange}>
+            <Select value={this.state.userCategory} name="userCategory" onChange={this.handleInputChange}>
+              <option value="">Prefer Not to Say</option>
               <option value="Patient">Patient</option>
               <option value="Friend">Friend</option>
               <option value="Family">Family</option>
@@ -180,12 +222,12 @@ class ImageUpload extends Component {
             placeholder="Fill in only if others selected as Category Description"
           />
           <label>Is Profile Public:  
-            <input
-              value={this.state.publicProfile}
-              onChange={this.handleInputChange}
-              name="publicProfile"
-              type="checkbox"
-            />
+          <input
+            value={this.state.publicProfile}
+            onChange={this.handleInputChange}
+            name="publicProfile"
+            type="checkbox"
+          />
           </label>
           <br />
           <input className="fileInput" 
@@ -203,4 +245,4 @@ class ImageUpload extends Component {
     )
   }
 }
-export default ImageUpload;
+export default ProfileEdit;

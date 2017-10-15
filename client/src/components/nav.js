@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import UserLogin from "./Userlogin";
-import $ from "jquery"
+import $ from "jquery";
 
 class Nav extends Component {
 
