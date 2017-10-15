@@ -14,7 +14,7 @@ const newZip = 30307;
 
 //https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/30309/5/miles?minimal
 
-var zipquery = "https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/30309/5/miles?minimal";
+var zipquery = `https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/${newZip}/5/miles?minimal`;
 
 //const zipquery = `http://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=${newZip}&minimumradius=0&maximumradius=50&key=HPFK5BA7MRAI9NOA154O`
 
