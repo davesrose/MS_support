@@ -44,7 +44,7 @@ router.route("/upload")
   // .post(uploading, fileController.upload());
   .post(uploading, (req, res, next) => {
   	
-  	const filePath = __dirname + '/../../client/build/images/' + req.file.filename;
+  	const filePath = __dirname + '/../../images/' + req.file.filename;
   	const relativeFilePath = '/images/' + req.file.filename;
     
     // Check if the right extension is loaded

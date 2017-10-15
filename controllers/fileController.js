@@ -1,6 +1,8 @@
 const multer = require('multer');
 
-const uploading = multer({ dest: '../client/public/images/' });
+// const uploading = multer({ dest: '../client/public/images/' });  trying a folder outside of client
+
+const uploading = multer({ dest: '../images/' });
 
 // Defining methods for the usersController
 module.exports = {
