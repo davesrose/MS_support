@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const authRoutes = require('./auth'); 
 const usersRoutes = require('./users'); 
-const fileRoutes = require('./file');
+//const fileRoutes = require('./file');
 //const middlewareRoutes = require('./middleware'); 
 const config = require("../../config/index");
 var jwt    = require('jsonwebtoken');
@@ -47,7 +47,7 @@ router.use('/auth', authRoutes);
 router.use('/users', usersRoutes);
 
 //users routes
-router.use('/file', fileRoutes);
+//router.use('/file', fileRoutes);
 
 
 module.exports = router;
