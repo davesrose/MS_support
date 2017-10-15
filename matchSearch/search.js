@@ -14,80 +14,68 @@ const newZip = 30307;
 
 //https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/30309/5/miles?minimal
 
-const zipquery = `https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/${newzip}/5/miles?minimal`;
+var zipquery = "https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/30309/5/miles?minimal";
 
 //const zipquery = `http://api.zip-codes.com/ZipCodesAPI.svc/1.0/FindZipCodesInRadius?zipcode=${newZip}&minimumradius=0&maximumradius=50&key=HPFK5BA7MRAI9NOA154O`
 
-axios.get(zipquery).then((err, zipRes) => {
-	if (err) throw err;
+axios.get(zipquery).then(zipRes => {
+	const zipSearch = zipRes.data.zip_codes;
 	console.log(zipRes);
 });
 
 const matchUsers = newUser => {
 
-	MongoClient.connect(url, function(err, db) {
-	  if (err) throw err;
-	  db.collection("usersearches").find().toArray(function(err, result) {
-	    if (err) throw err;
-	    // axios.get(zipquery).then(zipRes => {
-	    // 	console.log(zipRes);
-	    // });
-	    //console.log(result);
-	 //    let sameArea = false;
-		// const matchedUsersArea = [];
-		// const matchedUsers = [];
-		// axios.get(zipquery).then(zipRes => {
-		//     for (var i=0; i < result.length; i++) {
+	// MongoClient.connect(url, function(err, db) {
+	//   if (err) throw err;
+	//   db.collection("usersearches").find().toArray(function(err, result) {
+	//     if (err) throw err;
+	//     // axios.get(zipquery).then(zipRes => {
+	//     // 	console.log(zipRes);
+	//     // });
+	//     //console.log(result);
+	//     const zipquery = `https://www.zipcodeapi.com/rest/sQ8TmdgmloK621rldEfKmRs6UEf6vc5Y3eSpr8MMwwTzxlUL09wn1YtVCI28V76Y/radius.json/${newZip}/10/miles?minimal`;
+	//     let sameArea = false;
+	// 	const matchedUsersArea = [];
+	// 	const matchedUsers = [];
+	// 	axios.get(zipquery).then(zipRes => {
+	// 		const zipSearch = zipRes.data.zip_codes
+	// 		console.log(zipRes.data.zip_codes);
+	// 	 //    for (var i=0; i < result.length; i++) {
 				
-		// 		for (var j=0; j < zipRes.length; j++) {
-		// 			if (newzip === zipRes[j]) {
-		// 				return sameArea = true;
+	// 		// 	for (var j=0; j < zipSearch.length; j++) {
+	// 		// 		if (newZip === zipSearch[j]) {
+	// 		// 			return sameArea = true;
 
-		// 		    	if ((sameArea === true) && (result[i].agerange === newAgeRange)) {
+	// 		// 	    	if ((sameArea === true) && (result[i].agerange === newAgeRange)) {
 				    		
-		// 		    		matchedUsersArea.push(result[i]);
-		// 		    		console.log(matchedUsersArea);
-		// 				}
+	// 		// 	    		matchedUsersArea.push(result[i]);
+	// 		// 	    		//console.log(matchedUsersArea);
+	// 		// 			}
 
-		// 			}
-		// 		}
-		// 	}
-		// });
+	// 		// 		}
+	// 		// 	}
+	// 		// }
+	// 	});
 
-		// if (matchedUsersArea.length > 5) {
-		// 	for (var z=0; z < matchedUsersArea.length; z++) {
-		// 		for (var w=0; w < matchedUsersArea.length; w++) {
-		// 			if (matchedUsersArea[w] !== matchedUsersArea[z]) {
-		// 				const randomNum = Math.floor(Math.random() * matchedUsersArea) + 1;
-		// 				matchedUsers.push(matchedUsersArea[randomNum]);
-		// 			}
-		// 		}
+	// 	// if (matchedUsersArea.length > 5) {
+	// 	// 	for (var z=0; z < matchedUsersArea.length; z++) {
+	// 	// 		for (var w=0; w < matchedUsersArea.length; w++) {
+	// 	// 			if (matchedUsersArea[w] !== matchedUsersArea[z]) {
+	// 	// 				const randomNum = Math.floor(Math.random() * matchedUsersArea) + 1;
+	// 	// 				matchedUsers.push(matchedUsersArea[randomNum]);
+	// 	// 			}
+	// 	// 		}
 				
-		// 	}
-		// } else {
-		// 	matchedUsers.push(matchedUsersArea);
-		// }
+	// 	// 	}
+	// 	// } else {
+	// 	// 	matchedUsers.push(matchedUsersArea);
+	// 	// }
 
 
-		//console.log("matched users for whole area: "+matcedUsersArea);
-		//console.log("matched users: "+matcedUsers);
-	    db.close();
-	  });
-	});
+	// 	//console.log("matched users for whole area: "+matcedUsersArea);
+	// 	//console.log("matched users: "+matcedUsers);
+	//     db.close();
+	//   });
+	// });
 };
-matchUsers();
-	 //    for (var i=0; i < result.length; i++) {
-
-	 //    	if ((result[i].agerange === newAgeRange)) {
-	 //    		let sameArea = false;
-		// 		axios.get(zipquery).then(zipRes => {
-		// 			for (var j=0; j < zipRes.length; j++) {
-		// 				if (newzip === zipRes[j]) {
-		// 					return sameArea = true;
-		// 				}
-		// 			}
- 
-		// 		});
-		// 	}
-
-		// }
+//matchUsers();
