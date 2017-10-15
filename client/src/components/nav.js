@@ -30,5 +30,3 @@ class Nav extends Component {
   }
 }
 export default Nav;
-
-// data-toggle="modal" data-target="#loginModal"

@@ -32,9 +32,8 @@ const matchUsers = newUser => {
 	let sameArea = false;
 	axios.get(zipquery).then(zipRes => {
 		console.log(zipRes.data.zip_codes[0])
-		const zipcodes = zipRes.data.zip_codes;
-		for (var i=0; i < zipcodes.length; i++) {
-			zipCodes.push(zipcodes[i]);
+		for (var i=0; i < zipRes.data.zip_codes.length; i++) {
+			zipCodes.push(zipRes.data.zip_codes[i]);
 		}
 	});
 	console.log(zipCodes);

@@ -27,5 +27,3 @@ const Main = () =>
 	</Router>;
 
 export default Main;
-
-// <Footer />
