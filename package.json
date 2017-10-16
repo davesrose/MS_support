@@ -12,11 +12,14 @@
     "seed": "node scripts/seedDB",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "engines": {
+    "yarn": "1.1.0"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^3.5.0",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.12.1"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -26,6 +29,7 @@
     "moment": "^2.18.1",
     "mongoose": "^4.11.7",
     "nodemon": "^1.12.1",
+    "passport": "^0.4.0",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
