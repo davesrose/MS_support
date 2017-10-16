@@ -29,12 +29,15 @@ app.use(routes);
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/ms_support",
-  {
-    useMongoClient: true
-  }
-);
+
+if(process.env.NODE_ENV == 'production'){
+  // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
+  mongoose.connect('mongodb://heroku_bmz8c9dv:hg2jkp47ouf9sn4hei1bhq9av0@ds121535.mlab.com:21535/heroku_bmz8c9dv');
+}
+else{
+  mongoose.connect('mongodb://localhost/ms_support');
+}
+
 
 // Start the API server
 app.listen(PORT, function() {
