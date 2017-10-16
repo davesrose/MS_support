@@ -6,6 +6,10 @@ const imgStyle = {
 
 class AboutSite extends Component {
 
+state = {
+	init: []
+}
+
   render() {
     return (
 	  <div className="mainContent">
