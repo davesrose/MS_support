@@ -2,10 +2,6 @@ import React, { Component } from "react";
 
 class Events extends Component {
 
-  state = {
-    init: []
-  }
-
   render() {
     return (
 	  <div className="mainContent">
