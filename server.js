@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
 const mongoose = require("mongoose");
-//const routes = require("./routes");
+const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const passport = require('passport');
@@ -21,14 +21,11 @@ app.use(passport.initialize());
 require('./config/passport')(passport);  
 
 // Serve up static assets
-app.use(express.static("client/build"));
-
+app.use(express.static("client/build/"));
+app.use(express['static'](__dirname+'client/public', {maxAge: 86400000}));
 // Add routes, both API and view
-//app.use(routes);
+app.use(routes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build/index.html'));
-});
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
