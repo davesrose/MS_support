@@ -22,7 +22,7 @@ require('./config/passport')(passport);
 
 // Serve up static assets
 app.use(express.static("client/build/"));
-app.use(express['static'](__dirname+'client/public', {maxAge: 86400000}));
+//app.use(express['static'](__dirname+'client/public', {maxAge: 86400000}));
 // Add routes, both API and view
 app.use(routes);
 
