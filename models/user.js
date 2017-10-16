@@ -38,7 +38,7 @@ const userSchema = new Schema({
     type: Number,
     required: false
    },
-   imgPath: {
+   imagePath: {
     type: String
    },
    sex: {

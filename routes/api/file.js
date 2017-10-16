@@ -18,7 +18,7 @@ function checkMagicNumbers(magic) {
 const multer = require('multer')
 const storage = multer.diskStorage({
 	destination: function(req, file, callback) {
-		callback(null, __dirname + '/../../client/public/images/')
+		callback(null, __dirname + '/../../client/build/images/')
 	},
 	filename: function(req, file, callback) {
 		callback(null, file.originalname);
