@@ -31,7 +31,7 @@ class ProfileEdit extends Component {
   //TODO: Currently Defaulting to an Id, but will change this to Session
   //TODO: Also need to properly display the picture
   loadProfile = () => {
-    API.getUser("59df790e98ae2f3b18ab4ce0")
+    API.getUser("59db9b48715d2604b412178a")
       .then(res => {
         return this.setState({ 
           data: res.data,
@@ -97,7 +97,7 @@ class ProfileEdit extends Component {
     // Now Save the profile data in the DB, including the path of the image, if it were provided
     
 
-    API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+    API.updateProfile("59db9b48715d2604b412178a", updatedProfileData)
     .then(resbook => this.loadProfile())
     .catch(err => console.log(err));
   }
