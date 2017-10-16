@@ -6,12 +6,11 @@ const fileRoutes = require('./file');
 const config = require("../../config/index");
 var jwt    = require('jsonwebtoken');
 
-// //auth routes
- router.use('/auth', authRoutes);
+// // //auth routes
+//  router.use('/auth', authRoutes);
 
 //users routes
 router.use('/users', usersRoutes);
-
 
 //users routes
 router.use('/file', fileRoutes);

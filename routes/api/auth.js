@@ -5,7 +5,7 @@ const authController = require("../../controllers/authController");
 
 // Matches with "/api/articles"
 router.route("/register")
-  .post(usersController.register);
+  .post(authController.register);
 
 
 router.route("/authenticate")
