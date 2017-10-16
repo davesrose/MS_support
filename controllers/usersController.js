@@ -4,6 +4,12 @@ const config = require("../config/index");
 
 // Defining methods for the usersController
 module.exports = {
+  findById: function(req, res) {
+    dbUser
+      .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findAll: function(req, res) {
     dbUser
       .find(req.query)
@@ -14,12 +20,6 @@ module.exports = {
   update: function(req, res) {
     dbUser
       .findOneAndUpdate({ _id: req.params.id }, req.body)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findById: function(req, res) {
-    dbUser
-      .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   }

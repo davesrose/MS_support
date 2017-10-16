@@ -1,5 +1,4 @@
 const multer = require('multer');
-
 const uploading = multer({ dest: '../client/public/images/' });
 
 // Defining methods for the usersController

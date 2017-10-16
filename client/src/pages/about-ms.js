@@ -148,5 +148,3 @@ class AboutMS extends Component {
 }  
 
  export default AboutMS;
-
- // <script src="video.js"></script>
