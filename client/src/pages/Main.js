@@ -15,8 +15,8 @@ const Main = () =>
     		<Nav />
     		<Switch>
         		<Route exact path="/" component={AboutMS} />
-        		<Route exact path="about" component={AboutSite} />
-        		<Route exact path="events" component={Events} />
+        		<Route exact path="/about" component={AboutSite} />
+        		<Route exact path="/events" component={Events} />
         		<Route component={NoMatch} />
     		</Switch>
             </div>
