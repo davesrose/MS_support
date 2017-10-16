@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
 const mongoose = require("mongoose");
-const routes = require("./routes");
+//const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
 const passport = require('passport');
@@ -24,13 +24,14 @@ require('./config/passport')(passport);
 app.use(express.static("client/build"));
 
 // Add routes, both API and view
-app.use(routes);
+//app.use(routes);
 
 // Set up promises with mongoose
 mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 
 if(process.env.NODE_ENV == 'production'){
+	app.use(express.static('client/build'));
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
   mongoose.connect('mongodb://heroku_bmz8c9dv:hg2jkp47ouf9sn4hei1bhq9av0@ds121535.mlab.com:21535/heroku_bmz8c9dv');
 }

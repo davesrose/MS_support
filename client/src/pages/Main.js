@@ -13,19 +13,15 @@ const Main = () =>
     	<div>
             <div className="mainContainer">
     		<Nav />
-    		
+    		<Switch>
         		<Route exact path="/" component={aboutMS} />
         		<Route exact path="/about" component={aboutSite} />
         		<Route exact path="/events" component={events} />
-        		
-
+        		<Route component={NoMatch} />
+    		</Switch>
             </div>
             <Footer /> 		
     	</div>       
 	</Router>;
 
 export default Main;
-
-// <Footer />
-//<Switch>
-//<Route component={NoMatch} />
