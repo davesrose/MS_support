@@ -17,8 +17,9 @@ function checkMagicNumbers(magic) {
 
 const multer = require('multer')
 const storage = multer.diskStorage({
+// const storage = multer.memoryStorage({
 	destination: function(req, file, callback) {
-		callback(null, __dirname + '/../../images/')
+		callback(null, __dirname + '/../../client/images/')
 	},
 	filename: function(req, file, callback) {
 		callback(null, file.originalname);
@@ -44,7 +45,7 @@ router.route("/upload")
   // .post(uploading, fileController.upload());
   .post(uploading, (req, res, next) => {
   	
-  	const filePath = __dirname + '/../../images/' + req.file.filename;
+  	const filePath = __dirname + '/../../client/images/' + req.file.filename;
   	const relativeFilePath = '/images/' + req.file.filename;
     
     // Check if the right extension is loaded
