@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const fileController = require("../../controllers/fileController");
+//const fileController = require("../../controllers/fileController");
 const path = require('path');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
