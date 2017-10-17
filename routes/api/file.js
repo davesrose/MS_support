@@ -19,7 +19,6 @@ if(process.env.NODE_ENV == 'production'){
   const s3Params = {
     Bucket: "msconnect",
     Key: "../../config/s3.js",
-    ContentType: fileType,
     ACL: 'public-read'
   };
 } else {
