@@ -3,16 +3,6 @@ const router = express.Router();
 const fileController = require("../../controllers/fileController");
 const path = require('path');
 const fs = require('fs');
-const mkdirp = require("mkdirp");
-
-mkdirp("../../client/build/images", function(err) {
-	if (err) throw err;
-	else console.log("build/images directory created and set to 777")
-});
-mkdirp("/images", function(err) {
-	if (err) throw err;
-	else console.log("build/images directory created and set to 777")
-});
 
 const MAGIC_NUMBERS = {
     jpg: 'ffd8ffe0',
