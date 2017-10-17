@@ -74,8 +74,6 @@ class ProfileEdit extends Component {
       imagePath: this.state.imagePath
     };
 
-    console.log(this.state);
-
     //If no files entered, just save the provfile without the file
     if (!this.state.file){
       API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
@@ -95,8 +93,9 @@ class ProfileEdit extends Component {
             console.log(res.data);
             console.log(res.data.imagePath);
             this.setState({ file: res.data.response, imagePath: res.data.imagePath, name: '', imagePreviewUrl: ''});
+            
+            //After Updating the image, saving the profile with the image url from Amazon
             updatedProfileData.imagePath = res.data.imagePath;
-            console.log(updatedProfileData); 
             API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
               .then(resbook => this.loadProfile())
               .catch(err => console.log(err));

@@ -22,7 +22,7 @@ require('./config/passport')(passport);
 
 // Serve up static assets
 app.use(express.static("client/build/"));
-app.use(express['static'](__dirname+'client/public', {maxAge: 86400000}));
+//app.use(express['static'](__dirname+'client/public', {maxAge: 86400000}));
 // Add routes, both API and view
 app.use(routes);
 
@@ -34,7 +34,7 @@ mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV == 'production'){
 	app.use(express.static('client/build'));
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
-  mongoose.connect('mongodb://heroku_bmz8c9dv:hg2jkp47ouf9sn4hei1bhq9av0@ds121535.mlab.com:21535/heroku_bmz8c9dv');
+  mongoose.connect('mongodb://heroku_vxdg44dk:2h7d40vsasaahne42k28l6t21g@ds121955.mlab.com:21955/heroku_vxdg44dk');
 }
 else{
   mongoose.connect('mongodb://localhost/ms_support');
