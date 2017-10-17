@@ -5,7 +5,7 @@ import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://localhost:3231"
+	const socketUrl = process.env.PORT || 3231
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
