@@ -74,32 +74,36 @@ class ProfileEdit extends Component {
       imagePath: this.state.imagePath
     };
 
-    let _path = "";
-
-    //Upload the image, and grab the URL if successful, then save all the text in the DB
-    API.uploadImage(formData)
-   .then(res => {
-      if (res.data.success === false) {
-        setTimeout(() => {
-          alert(res.data.message);
-        }, 1000);
-      } 
-      else {
-        this.setState({ file: res.data.response, imagePath: res.data.imagePath, name: '', imagePreviewUrl: ''});
-      }
-    })
-    .catch(err => console.log(err));
-    
-
     console.log(this.state);
-    console.log(updatedProfileData);
 
-    // Now Save the profile data in the DB, including the path of the image, if it were provided
-    
-
-    API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
-    .then(resbook => this.loadProfile())
-    .catch(err => console.log(err));
+    //If no files entered, just save the provfile without the file
+    if (!this.state.file){
+      API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+      .then(resbook => this.loadProfile())
+      .catch(err => console.log(err));
+    }
+    //Otherwise, save the file first, then save the profile with the link of the file.
+    else {
+      API.uploadImage(formData)
+        .then(res => {
+          if (res.data.success === false) {
+            setTimeout(() => {
+              alert(res.data.message);
+            }, 1000);
+          } 
+          else {
+            console.log(res.data);
+            console.log(res.data.imagePath);
+            this.setState({ file: res.data.response, imagePath: res.data.imagePath, name: '', imagePreviewUrl: ''});
+            updatedProfileData.imagePath = res.data.imagePath;
+            console.log(updatedProfileData); 
+            API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+              .then(resbook => this.loadProfile())
+              .catch(err => console.log(err));
+          }
+        })
+        .catch(err => console.log(err));
+    }
   }
 
   handleInputChange = event => {
@@ -122,13 +126,13 @@ class ProfileEdit extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-
+    console.log(e.target);
     console.log(file.name);
     reader.onloadend = () => {
       this.setState({
         file: file,
         name: file.name,
-        imagePath: '/images/' + file.name,
+        imagePath: 'https://s3.amazonaws.com/msconnect/images/' + file.name,
         imagePreviewUrl: reader.result
       });
     }
@@ -231,7 +235,7 @@ class ProfileEdit extends Component {
           </label>
           <br />
           <input className="fileInput" 
-            type="file" name="userPhoto"
+            type="file" name="userPhoto" imagePath={this.state.imagePath}
             onChange={(e)=>this._handleImageChange(e)} />
           <button className="submitButton" 
             type="submit" 
