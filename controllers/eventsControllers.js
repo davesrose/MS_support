@@ -57,10 +57,18 @@ exports.createEvent = function(req, res, next) {
 
 
     let event = new Events({
-        name: name,
-        email: email,
+
+        eventTitle: eventTitle,
         status: "Open",
-        message: message
+        eventDate: eventDate,
+        eventDescription: eventDescription,
+        eventStreet: eventStreet,
+        eventCity: eventCity,
+        eventZip: eventZip,
+        eventInfo: eventInfo,
+        eventOwner: eventOwner
+        
+
     });
     event.save(function(err, user) {
         if (err) {
