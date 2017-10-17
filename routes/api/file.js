@@ -18,13 +18,14 @@ if(process.env.NODE_ENV == 'production'){
 	//AWS.config.loadFromPath('../app/MS_Support/config/s3.js');
   const s3Params = {
     Bucket: "msconnect",
-    Key: fileName,
+    Key: "../../config/s3.js",
     ContentType: fileType,
     ACL: 'public-read'
   };
 } else {
 	AWS.config.loadFromPath('../MS_Support/config/s3.js');
 }
+
 const s3 = new AWS.S3();
 
 function checkMagicNumbers(magic) {
