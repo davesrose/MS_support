@@ -2,7 +2,18 @@ const express = require('express');
 const router = express.Router();
 const fileController = require("../../controllers/fileController");
 const path = require('path');
-const fs = require('fs')
+const fs = require('fs');
+const mkdirp = require("mkdirp");
+
+mkdirp("../../client/build/images", function(err) {
+	if (err) throw err;
+	else console.log("build/images directory created and set to 777")
+});
+mkdirp("/images", function(err) {
+	if (err) throw err;
+	else console.log("build/images directory created and set to 777")
+});
+
 const MAGIC_NUMBERS = {
     jpg: 'ffd8ffe0',
     jpg1: 'ffd8ffe1',
@@ -19,7 +30,7 @@ const multer = require('multer')
 const storage = multer.diskStorage({
 // const storage = multer.memoryStorage({
 	destination: function(req, file, callback) {
-		callback(null, __dirname + '/../../client/images/')
+		callback(null, __dirname + '/../../client/build/images/')
 	},
 	filename: function(req, file, callback) {
 		callback(null, file.originalname);
@@ -45,7 +56,7 @@ router.route("/upload")
   // .post(uploading, fileController.upload());
   .post(uploading, (req, res, next) => {
   	
-  	const filePath = __dirname + '/../../client/images/' + req.file.filename;
+  	const filePath = __dirname + '/../../client/build/images/' + req.file.filename;
   	const relativeFilePath = '/images/' + req.file.filename;
     
     // Check if the right extension is loaded
