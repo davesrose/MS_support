@@ -34,7 +34,7 @@ mongoose.Promise = global.Promise;
 if(process.env.NODE_ENV == 'production'){
 	app.use(express.static('client/build'));
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
-  mongoose.connect('mongodb://heroku_bmz8c9dv:hg2jkp47ouf9sn4hei1bhq9av0@ds121535.mlab.com:21535/heroku_bmz8c9dv');
+  mongoose.connect('mongodb://heroku_07wglkf3:i6u126c04rcp2nte37jhet7t87@ds121945.mlab.com:21945/heroku_07wglkf3');
 }
 else{
   mongoose.connect('mongodb://localhost/ms_support');
