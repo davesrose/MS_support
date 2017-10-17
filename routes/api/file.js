@@ -14,7 +14,7 @@ const MAGIC_NUMBERS = {
 }
 const maxFileSize = 1 * 1024 * 1024;
 
-AWS.config.loadFromPath('../config/s3.js');
+AWS.config.loadFromPath('../MS_Support/config/s3.js');
 const s3 = new AWS.S3();
 
 function checkMagicNumbers(magic) {
