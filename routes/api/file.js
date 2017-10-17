@@ -15,7 +15,13 @@ const MAGIC_NUMBERS = {
 const maxFileSize = 1 * 1024 * 1024;
 
 if(process.env.NODE_ENV == 'production'){
-	AWS.config.loadFromPath('../app/MS_Support/config/s3.js');
+	//AWS.config.loadFromPath('../app/MS_Support/config/s3.js');
+  const s3Params = {
+    Bucket: "msconnect",
+    Key: fileName,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
 } else {
 	AWS.config.loadFromPath('../MS_Support/config/s3.js');
 }
