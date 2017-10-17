@@ -5,7 +5,7 @@ import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = process.env.PORT || 3231
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com:3231"
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
@@ -28,7 +28,7 @@ export default class Layout extends Component {
 	*	Connect to and initializes the socket.
 	*/
 	initSocket = ()=>{
-		const socket = io(socketUrl)
+		const socket = io()
 
 		socket.on('connect', ()=>{
 			console.log("connected");
