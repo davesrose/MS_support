@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 // Generalizing it to have an idea on how and where to start
 // Will be working on it with rest of backend team
 
-const eventsSchema = new Schema({
+const eventSchema = new Schema({
 
 //define schema here
 	 eventTitle: {
@@ -46,6 +46,6 @@ const eventsSchema = new Schema({
 
 });
 
-const Event = mongoose.model("Event", eventsSchema);
+const event = mongoose.model("MS", eventSchema);
 
-module.exports = Event;
+module.exports = event;
