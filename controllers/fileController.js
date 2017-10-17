@@ -1,12 +1,14 @@
 const mkdirp = require("mkdirp");
 
-mkdirp("../client/build/images", function(err) {
-  if (err) throw err;
-  else console.log("build/images directory created and set to 777")
-});
+const addPerm = () => {
+  mkdirp("../client/build/images", function(err) {
+    if (err) throw err;
+    else console.log("build/images directory created and set to 777")
+  });
+};
 
 const multer = require('multer');
-const uploading = multer({ dest: '../client/build/images/' });
+const uploading = multer({ dest: addPerm() });
 
 // Defining methods for the usersController
 module.exports = {
