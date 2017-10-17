@@ -13,8 +13,8 @@ import Layout from "../components/Layout"
 const Main = () =>
 	<Router>
     	<div>
-            <Layout />
             <div className="mainContainer">
+            <Layout />
     		<Nav />
     		<Switch>
         		<Route exact path="/" component={aboutMS} />

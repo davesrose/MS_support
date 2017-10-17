@@ -65,7 +65,8 @@ input, textarea {
   flex-direction: row;
   align-items: flex-start;
   height: 80%;
-  width: 30%
+  width: 30%;
+  z-index: 3;
 }
 
 #side-bar {
