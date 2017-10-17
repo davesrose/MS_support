@@ -11,8 +11,6 @@ let connectedUsers = { }
 let communityChat = createChat()
 
 module.exports = function(socket){
-		
-	socket = io("http://localhost:3001")
 
 	// console.log('\x1bc'); //clears console
 	console.log("Socket Id:" + socket.id);

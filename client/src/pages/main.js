@@ -7,14 +7,14 @@ import profile from "./profile"
 import Nav from "../components/nav";
 import Footer from "../components/footer"
 import NoMatch from "./NoMatch";
-//import Layout from "../components/Layout"
+import Layout from "../components/Layout"
 //import API from "../utils/API";
 
 const Main = () =>
 	<Router>
     	<div>
             <div className="mainContainer">
-            
+            <Layout />
     		<Nav />
     		<Switch>
         		<Route exact path="/" component={aboutMS} />

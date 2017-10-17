@@ -4,7 +4,7 @@ import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = "http://localhost:3001"
+const socketUrl = "http://localhost:3231"
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -24,10 +24,10 @@ export default class Layout extends Component {
 	*	Connect to and initializes the socket.
 	*/
 	initSocket = ()=>{
-		const socket = io(socketUrl, {transports: ['websocket', 'polling', 'flashsocket']})
+		const socket = io(socketUrl)
 
 		socket.on('connect', ()=>{
-			console.log(socketUrl);
+			console.log("connected");
 		})
 		
 		this.setState({socket})
@@ -58,7 +58,7 @@ export default class Layout extends Component {
 		const { title } = this.props
 		const { socket, user } = this.state
 		return (
-			<div className="container">
+			<div className="container containerChat">
 				{
 					!user ?	
 					<LoginForm socket={socket} setUser={this.setUser} />
