@@ -1,7 +1,7 @@
 const mkdirp = require("mkdirp");
 
 const addPerm = () => {
-  mkdirp("../client/build/images", function(err) {
+  mkdirp("../images", function(err) {
     if (err) throw err;
     else console.log("build/images directory created and set to 777")
   });
