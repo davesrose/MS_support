@@ -3,15 +3,15 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-import app from "http"
+// import app from "http"
 
-const PORT = process.env.PORT || 3231
+// const PORT = process.env.PORT || 3231
 
-app.listen(PORT, ()=>{
-	console.log("Connected to port:" + PORT);
-})
+// app.listen(PORT, ()=>{
+// 	console.log("Connected to port:" + PORT);
+// })
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com:3231"
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
