@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
+var ws = new WebSocket('wss:/ms-connect-finalproject.herokuapp.com/'); 
 // import app from "http"
 
 // const PORT = process.env.PORT || 3231
@@ -11,7 +12,8 @@ import ChatContainer from './chats/ChatContainer'
 // 	console.log("Connected to port:" + PORT);
 // })
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://ms-connect-finalproject.herokuapp.com/:3231"
+	// const socketUrl = "https://ms-connect-finalproject.herokuapp.com/:3231"
+const socketUrl = ws;
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
