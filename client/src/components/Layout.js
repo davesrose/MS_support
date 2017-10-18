@@ -3,7 +3,11 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-
+const http = require("http");
+const PORT = process.env.PORT || 3231
+http.listen(PORT, function(){
+  console.log('listening on *:' + PORT);
+});
 //if(process.env.NODE_ENV == 'production'){
 	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
 //} else {
