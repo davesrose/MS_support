@@ -28,7 +28,7 @@ export default class Layout extends Component {
 	*	Connect to and initializes the socket.
 	*/
 	initSocket = ()=>{
-		const socket = io(socketUrl)
+		const socket = io("0.0.0.0:3231")
 
 		socket.on('connect', ()=>{
 			console.log("connected");

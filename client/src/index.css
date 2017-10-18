@@ -56,7 +56,7 @@ input, textarea {
   color: #c92c43
 }
 
-.containerChat {
+.container {
   color: #cac8ee;
   position: fixed;
   bottom: 0;
@@ -65,7 +65,7 @@ input, textarea {
   flex-direction: row;
   align-items: flex-start;
   height: 80%;
-  width: 30%;
+  width: 40%;
   z-index: 3;
 }
 
