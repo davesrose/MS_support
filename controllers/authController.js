@@ -1,6 +1,7 @@
 const dbUser = require("../models/user");
 const jwt = require('jsonwebtoken');
 const config = require("../config/index");
+const passport = require('passport');
 
 // Defining methods for the usersController
 module.exports = {
@@ -42,35 +43,27 @@ module.exports = {
       }); 
   },
   verifyToken: function(req, res, next) {
-
     // check header or url parameters or post parameters for token
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    console.log("Entering verify");
+    var token = req.params.token || req.body.token || req.query.token || req.headers['x-access-token'];
 
     // decode token
     if (token) {
-
-      // verifies secret and checks exp
-      jwt.verify(token, config.secret, function(err, decoded) {      
-        if (err) {
-          return res.status(500).res.json({ success: false, message: 'Failed to authenticate token.' });    
-        } else {
-          // if everything is good, save to request for use in other routes
-          res.status(200).req.decoded = decoded;    
-          next();
-        }
-      });
-
+      //Passing in / Reformating the token before decoding
+      jwt.verify(token.replace("JWT ",""), config.secret, function(err, decoded) {
+       if(err){
+           console.log('There is an error ' + err)
+       }else{
+        console.log(decoded.data._id);
+        res.status(200).send({ success: false, _id: decoded.data._id, message: 'No token provided.' });
+       }
+      })
     } else {
-
       // if there is no token
-      // return an error
-      return res.status(403).send({ 
-          success: false, 
-          message: 'No token provided.' 
-      });
+      return res.status(403).send({success: false, _id: null, message: 'No token provided.'});
     }
   },
   logout: function(req, res){
-    return res.status(200).send({ auth: false, token: null });
+    return res.status(200).send({ success: false, token: null, email: null });
   }
 };
