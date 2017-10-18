@@ -5,7 +5,7 @@ import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "ttps://ms-connect-finalproject.herokuapp.com/socket.io/?EIO=3&transport=polling&t=LyimzAZ:3231"
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com/:3231"
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
