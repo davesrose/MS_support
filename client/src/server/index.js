@@ -1,7 +1,7 @@
 //setup stuff
 
 //if(process.env.NODE_ENV == 'production'){
-	var app = require('http').createServer()
+	var app = require('https').createServer()
 //} else {
 	//var app = require('http').createServer()
 //}
