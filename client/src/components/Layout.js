@@ -3,20 +3,10 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-var ws = new WebSocket('wss:/ms-connect-finalproject.herokuapp.com:3231'); 
-// import app from "http"
+var ws = new WebSocket('wss:/ms-connect-finalproject.herokuapp.com'); 
 
-// const PORT = process.env.PORT || 3231
-
-// app.listen(PORT, ()=>{
-// 	console.log("Connected to port:" + PORT);
-// })
-//if(process.env.NODE_ENV == 'production'){
-	// const socketUrl = "https://ms-connect-finalproject.herokuapp.com/:3231"
 const socketUrl = ws;
-//} else {
-	//const socketUrl = "http://localhost:3231"
-//}
+//const socketUrl = "http://localhost:3231"
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -29,7 +19,7 @@ export default class Layout extends Component {
 	}
 
 	componentWillMount() {
-		this.initSocket(socketUrl)
+		this.initSocket()
 	}
 
 	/*
@@ -39,7 +29,7 @@ export default class Layout extends Component {
 		const socket = io(socketUrl)
 
 		socket.on('connect', ()=>{
-			console.log("connected");
+			console.log("Connected");
 		})
 		
 		this.setState({socket})
@@ -70,7 +60,7 @@ export default class Layout extends Component {
 		const { title } = this.props
 		const { socket, user } = this.state
 		return (
-			<div className="container containerChat">
+			<div className="container">
 				{
 					!user ?	
 					<LoginForm socket={socket} setUser={this.setUser} />

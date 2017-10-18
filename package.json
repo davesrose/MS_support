@@ -36,7 +36,8 @@
     "axios": "^0.16.2",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
-    "express": "^4.15.4",
+    "bufferutil": "3.0.2",
+    "express": "4.16.2",
     "jquery": "^3.2.1",
     "jsonwebtoken": "^8.1.0",
     "mkdirp": "^0.5.1",
@@ -52,6 +53,8 @@
     "react-bootstrap": "^0.31.3",
     "react-dom": "^16.0.0",
     "react-router-dom": "^4.1.2",
+    "utf-8-validate": "3.0.3",
+    "was": "0.0.0",
     "ws": "^3.2.0"
   },
   "repository": {
