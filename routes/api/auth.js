@@ -7,19 +7,18 @@ const authController = require("../../controllers/authController");
 router.route("/register")
   .post(authController.register);
 
-
 router.route("/authenticate")
   .post(authController.authenticate);
+
+router.route("/:token")
+	.get(authController.verifyToken);
 
 router.route("/logout")
   .get(authController.logout);
 
-// router.route("/me")
-// 	.get(authController.verifyToken);
-
 router.route("/dashboard")
   .get(passport.authenticate('jwt', { session: false }), function(req, res) {  
-  res.send('It worked! User id is: ' + req.user._id + '.');
+  res.send('It worked! User id is: ' + req.user + '.');
 });
 
 module.exports = router;

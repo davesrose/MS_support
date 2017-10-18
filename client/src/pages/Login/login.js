@@ -39,6 +39,9 @@ class Login extends Component {
           //isModalOpen: !this.state.isModalOpen;
           //$("#loginModal").dataset.show = "false";
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
+
+          //Store the token in a session
+          window.localStorage.setItem('token', res.data.token);
         }
     })
       .catch(err => console.log(err));

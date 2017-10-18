@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SignIn from "../pages/Signup";
 import LogIn from "../pages/Login";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import $ from "jquery";
 
 class UserLogin extends Component {

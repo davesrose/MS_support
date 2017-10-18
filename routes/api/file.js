@@ -47,7 +47,7 @@ const storage = multerS3({
 const uploading = multer({ 
 	storage: storage,
 	fileFilter: function(req, file, callback) {
-		const ext = path.extname(file.originalname);
+		const ext = path.extname(file.originalname).toLowerCase();
 
 		//Check for image extension
 		if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
