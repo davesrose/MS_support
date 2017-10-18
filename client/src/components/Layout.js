@@ -3,9 +3,15 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
+const app = require('https');
 
+const PORT = process.env.PORT || 3231
+
+app.listen(PORT, ()=>{
+	console.log("Connected to port:" + PORT);
+})
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://ms-connect-finalproject.herokuapp.com:3231"
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
