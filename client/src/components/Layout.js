@@ -3,11 +3,37 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-const http = require("http");
-const PORT = process.env.PORT || 3231
-http.listen(PORT, function(){
-  console.log('listening on *:' + PORT);
+const http = require('https');
+const net = require('net');
+const url = require('url');
+
+// Create an HTTP tunneling proxy
+const proxy = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('okay');
 });
+proxy.on('connect', (req, cltSocket, head) => {
+  // connect to an origin server
+  const srvUrl = url.parse(`https://${req.url}`);
+  const srvSocket = net.connect(srvUrl.port, srvUrl.hostname, () => {
+    cltSocket.write('HTTP/1.1 200 Connection Established\r\n' +
+                    'Proxy-agent: Node.js-Proxy\r\n' +
+                    '\r\n');
+    srvSocket.write(head);
+    srvSocket.pipe(cltSocket);
+    cltSocket.pipe(srvSocket);
+  });
+});
+
+// now that proxy is running
+proxy.listen(3231, 'ms-connect-finalproject.herokuapp.com', () => {
+
+  // make a request to a tunneling proxy
+  const options = {
+    port: 3231,
+    hostname: 'ms-connect-finalproject.herokuapp.com',
+    method: 'CONNECT'
+  };
 //if(process.env.NODE_ENV == 'production'){
 	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
 //} else {
