@@ -7,11 +7,13 @@ import profile from "./profile"
 import Nav from "../components/nav";
 import Footer from "../components/footer"
 import NoMatch from "./NoMatch";
+import Layout from "../components/Layout"
 //import API from "../utils/API";
 
 const Main = () =>
 	<Router>
     	<div>
+            <Layout />
             <div className="mainContainer">
     		<Nav />
     		<Switch>

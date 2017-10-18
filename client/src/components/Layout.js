@@ -4,7 +4,11 @@ import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-const socketUrl = "http://localhost:3231"
+//if(process.env.NODE_ENV == 'production'){
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com:3231"
+//} else {
+	//const socketUrl = "http://localhost:3231"
+//}
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -17,7 +21,7 @@ export default class Layout extends Component {
 	}
 
 	componentWillMount() {
-		this.initSocket()
+		this.initSocket(socketUrl)
 	}
 
 	/*
@@ -27,7 +31,7 @@ export default class Layout extends Component {
 		const socket = io(socketUrl)
 
 		socket.on('connect', ()=>{
-			console.log("Connected");
+			console.log("connected");
 		})
 		
 		this.setState({socket})
@@ -58,7 +62,7 @@ export default class Layout extends Component {
 		const { title } = this.props
 		const { socket, user } = this.state
 		return (
-			<div className="container">
+			<div className="container containerChat">
 				{
 					!user ?	
 					<LoginForm socket={socket} setUser={this.setUser} />
