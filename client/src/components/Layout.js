@@ -3,8 +3,8 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-var ws = new WebSocket('wss:/ms-connect-finalproject.herokuapp.com'); 
-
+var ws = new WebSocket('wss:/ms-connect-finalproject.herokuapp.com', { port: 3231 }); 
+ 
 const socketUrl = ws;
 //const socketUrl = "http://localhost:3231"
 export default class Layout extends Component {
