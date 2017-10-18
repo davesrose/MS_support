@@ -3,16 +3,9 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-const http = require("https");
-const options = {
-	host: "ms-connect-finalproject.herokuapp.com",
-	path: "/",
-	// port: "3231",
-	method: "POST"
-}
+
 //if(process.env.NODE_ENV == 'production'){
-	//const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
-	const socketUrl = http.request(options);
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
