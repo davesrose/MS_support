@@ -10,6 +10,11 @@ var io = module.exports.io = require('socket.io')(app)
 const PORT = process.env.PORT || 3231
 //const PORT = process.env.PORT || 3001
 
+io.configure(function () {  
+  io.set("transports", ["xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
+
 const SocketManager = require('./SocketManager')
 
 io.on('connection', SocketManager)
