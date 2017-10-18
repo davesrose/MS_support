@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import "./ProfileEdit.css";
 import API from "../../utils/API";
-import { Input, FormBtn, Select } from "../../components/Form";
+import { Input, Select } from "../../components/Form";
 
 class ProfileEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
       file: '', 
-      name: '', 
+      name: '',
+      _id: '', 
       firstName: '',
       lastName: '',
       email: '',
@@ -25,16 +26,28 @@ class ProfileEdit extends Component {
   }
   
   componentDidMount() {
-    this.loadProfile();
+    var token = window.localStorage.getItem('token');
+
+    console.log(token);
+    if (token) {
+      API.memberInfo(token)
+        .then(res => {
+          this.setState({ _id: res.data._id });
+          this.loadProfile();
+      })
+      .catch(err => console.log(err));;
+    }
   };
 
   //TODO: Currently Defaulting to an Id, but will change this to Session
   //TODO: Also need to properly display the picture
   loadProfile = () => {
-    API.getUser("59df790e98ae2f3b18ab4ce0")
+    console.log(this.state._id);
+    API.getUser(this.state._id)
       .then(res => {
         return this.setState({ 
           data: res.data,
+          _id: res.data._id,
           firstName: res.data.firstName,
           lastName: res.data.lastName,
           email: res.data.email,
@@ -57,7 +70,6 @@ class ProfileEdit extends Component {
     e.preventDefault();
 
     const formData = new FormData(document.getElementById('uploadForm'));
-    const uploadData = document.getElementById('uploadForm');
 
     let updatedProfileData = {};
     updatedProfileData = {
@@ -76,7 +88,7 @@ class ProfileEdit extends Component {
 
     //If no files entered, just save the provfile without the file
     if (!this.state.file){
-      API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+      API.updateProfile(this.state._id, updatedProfileData)
       .then(resbook => this.loadProfile())
       .catch(err => console.log(err));
     }
@@ -96,7 +108,7 @@ class ProfileEdit extends Component {
             
             //After Updating the image, saving the profile with the image url from Amazon
             updatedProfileData.imagePath = res.data.imagePath;
-            API.updateProfile("59df790e98ae2f3b18ab4ce0", updatedProfileData)
+            API.updateProfile(this.state._id, updatedProfileData)
               .then(resbook => this.loadProfile())
               .catch(err => console.log(err));
           }
@@ -113,7 +125,7 @@ class ProfileEdit extends Component {
     });
 
     //Check to only deal with checkboxes
-    if (event.target.type == "checkbox"){
+    if (event.target.type === "checkbox"){
       this.setState({ 
         publicProfile: event.target.checked
       });
@@ -143,7 +155,7 @@ class ProfileEdit extends Component {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
     if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<img src={imagePreviewUrl} alt="My Pic"/>);
     } else {
       $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
@@ -234,7 +246,7 @@ class ProfileEdit extends Component {
           </label>
           <br />
           <input className="fileInput" 
-            type="file" name="userPhoto" imagePath={this.state.imagePath}
+            type="file" name="userPhoto"
             onChange={(e)=>this._handleImageChange(e)} />
           <button className="submitButton" 
             type="submit" 

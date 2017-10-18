@@ -22,5 +22,14 @@ module.exports = {
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+  },
+  create: function(req, res) {
+    dbUser
+      .create(req.body, function(err) {
+         if (err) {
+          return res.status(422).json({ success: false, message: 'That email address already exists.'});
+         }
+          return res.status(200).json({ success: true, message: 'Successfully created new user.'});
+    }); 
   }
 };

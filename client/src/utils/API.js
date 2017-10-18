@@ -19,5 +19,9 @@ export default {
   updateProfile: function(id, profileData) {
     console.log(profileData);
     return axios.put("/api/users/" + id, profileData);
+  },
+  // Verify the current token
+  memberInfo: function(token) {
+    return axios.get("/api/auth/" + token);
   }
 };
