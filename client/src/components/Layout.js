@@ -4,11 +4,11 @@ import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
 
-// if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://ms-connect-finalproject.herokuapp.com/:3231"
-// } else {
-// 	const socketUrl = "http://localhost:3231"
-// }
+//if(process.env.NODE_ENV == 'production'){
+	const socketUrl = "https://ms-connect-finalproject.herokuapp.com:3231"
+//} else {
+	//const socketUrl = "http://localhost:3231"
+//}
 export default class Layout extends Component {
 	
 	constructor(props) {
@@ -28,7 +28,7 @@ export default class Layout extends Component {
 	*	Connect to and initializes the socket.
 	*/
 	initSocket = ()=>{
-		const socket = io.connect(socketUrl)
+		const socket = io(socketUrl)
 
 		socket.on('connect', ()=>{
 			console.log("connected");
