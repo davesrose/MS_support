@@ -3,36 +3,16 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-const http = require('https');
-
-// Create an HTTP server
-const srv = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('okay');
-});
-srv.on('upgrade', (req, socket, head) => {
-  socket.write('HTTP/1.1 101 Web Socket Protocol Handshake\r\n' +
-               'Upgrade: WebSocket\r\n' +
-               'Connection: Upgrade\r\n' +
-               '\r\n');
-
-  socket.pipe(socket); // echo back
-});
-
-// now that server is running
-srv.listen(3231, 'https://ms-connect-finalproject.herokuapp.com', () => {
-
-  // make a request
-  const options = {
-    port: 3231,
-    hostname: 'https://ms-connect-finalproject.herokuapp.com',
-    headers: {
-      'Connection': 'Upgrade',
-      'Upgrade': 'websocket'
-    }
-  };
+const http = require("https");
+const options = {
+	host: "ms-connect-finalproject.herokuapp.com",
+	path: "/",
+	port: "3231",
+	method: "POST"
+}
 //if(process.env.NODE_ENV == 'production'){
-	const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
+	//const socketUrl = "https://ms-connect-finalproject.herokuapp.com"
+	const socketUrl = http.request(options);
 //} else {
 	//const socketUrl = "http://localhost:3231"
 //}
