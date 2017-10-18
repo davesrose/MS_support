@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import { USER_CONNECTED, LOGOUT } from '../Events'
 import LoginForm from './LoginForm'
 import ChatContainer from './chats/ChatContainer'
-const app = require('https');
+import app from "https"
 
 const PORT = process.env.PORT || 3231
 
