@@ -4,25 +4,30 @@ const Schema = mongoose.Schema;
 // Generalizing it to have an idea on how and where to start
 // Will be working on it with rest of backend team
 
-const usereventSchema = new Schema({
+const userEventSchema = new Schema({
 
 //define schema here
-	 username: {
+	 title: {
 	 	type: String,
 	 	required: true
 	 },
-	 eventTitle: {
+	 date: {
 	 	type: String,
 	 	required: true
+	 },
+	 contact: {
+	 	type: String
 	 },
 	 eventId: {
-	 	type: String,
-	 	required: true
+	 	type: String
+	 },
+	 userId: {
+	 	type: String
 	 }
 	 
 
 });
 
-const UserEvent = mongoose.model("UserEvent", usereventSchema);
+const UserEvent = mongoose.model("UserEvent", userEventSchema);
 
 module.exports = UserEvent;

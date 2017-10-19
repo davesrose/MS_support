@@ -7,45 +7,45 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
 
 //define schema here
-	 eventTitle: {
+	 title: {
 	 	type: String,
 	 	required: true
 	 },
-	 eventDate: {
+	 date: {
 	 	type: String,
 	 	required: true
 	 },
-	 eventDescription: {
+	 description: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 eventStreet: {
+	 street: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 eventCity: {
+	 city: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 eventState: {
+	 state: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 eventZip: {
+	 zip: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 contactInfo: {
+	 contact: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 },
-	 eventOwner: {
+	 owner: {
 	 	type: String,
-	 	required: true
+	 	required: false
 	 }
 
 });
 
-const event = mongoose.model("MS", eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 
-module.exports = event;
+module.exports = Event;

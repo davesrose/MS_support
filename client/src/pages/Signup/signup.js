@@ -7,7 +7,6 @@ import $ from "jquery"
 class Signup extends Component {
   state = {
     user: [],
-    name: "",
     email: "",
     password: ""
   };
@@ -21,22 +20,23 @@ class Signup extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.name && this.state.email && this.state.password) {
+    if (this.state.email && this.state.password) {
 
       const email = this.state.email;
       const re = /^(([^<>()[\]\\.,;:\s@]+(\.[^<>()[\]\\.,;:\s@]+)*)|(.+))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (re.test(email)) {
           API.register({
-            name: this.state.name,
             email: this.state.email,
             password: this.state.password
           })
           .then(res => {
-            console.log(res);
-            this.setState({ user: res.data.response, name: "", email: "", password: ""});
+            this.setState({ user: res.data.response, email: "", password: ""});
             $("#loginModal").hide();
             document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
+            
+            //Store the token in a session
+            window.localStorage.setItem('token', res.data.token);
           })
           .catch(err => {
             if (err === "Error: Request failed with status code 422") alert("email already used");
@@ -49,7 +49,7 @@ class Signup extends Component {
       }
     }
   };
-
+  
   render() {
     return (
       <div id="signIn">
@@ -58,12 +58,6 @@ class Signup extends Component {
             <Col size="md-10 md-offset-1">
 
                 <form>
-                  <Input
-                    value={this.state.name}
-                    onChange={this.handleInputChange}
-                    name="name"
-                    placeholder="name"
-                  />
                   <Input
                     value={this.state.email}
                     onChange={this.handleInputChange}
@@ -78,7 +72,7 @@ class Signup extends Component {
                     type="password"
                   />
                   <FormBtn
-                    disabled={!this.state.name}
+                    disabled={!this.state.email}
                     onClick={this.handleFormSubmit}
                   >
                     Submit

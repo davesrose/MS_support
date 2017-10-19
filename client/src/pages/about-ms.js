@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const pushStyle = {
-	"margin-bottom": "70px"
+	"marginBottom": "70px"
 }
 
 class AboutMS extends Component {
@@ -120,9 +120,9 @@ class AboutMS extends Component {
 
 	      <div id="video-controls">
 	        <button type="button" id="play-pause"></button>
-	        <input type="range" id="seek-bar" value="0" />
+	        <input type="range" id="seek-bar" defaultValue="0" />
 	        <button type="button" id="mute"></button>
-	        <input type="range" id="volume-bar" min="0" max="1" step="0.1" value="1" />
+	        <input type="range" id="volume-bar" min="0" max="1" step="0.1" defaultValue="1" />
 	        <button type="button" id="full-screen"></button>
 	        <div className="clear"></div>
 	      </div>

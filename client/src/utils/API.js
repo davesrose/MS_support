@@ -23,5 +23,31 @@ export default {
   // Verify the current token
   memberInfo: function(token) {
     return axios.get("/api/auth/" + token);
+  },
+  logout: function(){
+    return axios.get("api/auth/logout");
+  },
+  
+  addEvent: function(eventData) {
+    return axios.post("/api/events/", eventData);
+  },
+
+  // Gets all events
+  getEvents: function() {
+    return axios.get("/api/events");
+  },
+
+  // Deletes the Event with the given id
+  deleteEvent: function(id) {
+    return axios.delete("/api/userEvents/" + id);
+  },
+
+  getSavedEvents: function(id) {
+    return axios.get("/api/userEvents/" + id);
+  },
+
+  // Saves an article to the database
+  saveEvent: function(eventData) {
+    return axios.post("/api/userEvents", eventData);
   }
 };

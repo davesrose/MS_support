@@ -3,7 +3,9 @@ const passport = require('passport');
 const router = require("express").Router();
 const authController = require("../../controllers/authController");
 
-// Matches with "/api/articles"
+router.route("/logout")
+  .get(authController.logout);
+
 router.route("/register")
   .post(authController.register);
 
@@ -12,9 +14,6 @@ router.route("/authenticate")
 
 router.route("/:token")
 	.get(authController.verifyToken);
-
-router.route("/logout")
-  .get(authController.logout);
 
 router.route("/dashboard")
   .get(passport.authenticate('jwt', { session: false }), function(req, res) {  

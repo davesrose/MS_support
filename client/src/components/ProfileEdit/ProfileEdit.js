@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from 'react-router';
 import "./ProfileEdit.css";
 import API from "../../utils/API";
 import { Input, Select } from "../../components/Form";
@@ -23,26 +24,34 @@ class ProfileEdit extends Component {
       imagePreviewUrl: '',
       imagePath: ''
     };
+
   }
   
-  componentDidMount() {
+  // componentDidMount() {
+    
+  // };
+
+  componentWillMount() {
     var token = window.localStorage.getItem('token');
 
-    console.log(token);
     if (token) {
       API.memberInfo(token)
         .then(res => {
           this.setState({ _id: res.data._id });
           this.loadProfile();
-      })
-      .catch(err => console.log(err));;
-    }
-  };
 
-  //TODO: Currently Defaulting to an Id, but will change this to Session
-  //TODO: Also need to properly display the picture
+          //Update the Login/log out Button
+          document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
+      })
+      .catch(err => console.log(err));
+    }
+    else{
+      return (<Redirect to="../Userlogin" />);
+      
+    }
+  }
+
   loadProfile = () => {
-    console.log(this.state._id);
     API.getUser(this.state._id)
       .then(res => {
         return this.setState({ 
@@ -102,8 +111,6 @@ class ProfileEdit extends Component {
             }, 1000);
           } 
           else {
-            console.log(res.data);
-            console.log(res.data.imagePath);
             this.setState({ file: res.data.response, imagePath: res.data.imagePath, name: '', imagePreviewUrl: ''});
             
             //After Updating the image, saving the profile with the image url from Amazon
@@ -173,14 +180,13 @@ class ProfileEdit extends Component {
             value={this.state.email}
             onChange={this.handleInputChange}
             name="email"
-            placeholder="email"
             type="email"
           />
           <Input
+            disabled="true"
             value={this.state.password}
             onChange={this.handleInputChange}
             name="password"
-            placeholder="password"
             type="password"
           />          
           <Input
