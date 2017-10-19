@@ -55,8 +55,8 @@ class Nav extends Component {
             <a href="/events"><li>Events</li></a>
             <a href="/profile"><li>Profile</li></a>
           </ul>
-          <div className="clear"></div>
-          <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModalBox" onClick={this.toggleHidden.bind(this)}><p>Log In</p></div>
+        <div className="clear"></div>
+        <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModalBox" onClick={this.toggleHidden.bind(this)}><p>Log In</p></div>
           {!this.state.isLoginHidden && <UserLogin />}
       </nav>
     )
