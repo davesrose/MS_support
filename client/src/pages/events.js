@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router';
 import API from "../utils/API";
+import { Modal } from "react-bootstrap";
+import $ from "jquery";
 import { Input, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -13,6 +15,7 @@ class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        token: "",
         events: [],
         savedEvents: [],
         title: "",
@@ -36,7 +39,7 @@ class Events extends Component {
     if (token) {
       API.memberInfo(token)
         .then(res => {
-          this.setState({ owner: res.data._id });
+          this.setState({ owner: res.data._id, token: token });
           //Update the Login/log out Button
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
 
@@ -144,10 +147,31 @@ class Events extends Component {
       .catch(err => console.log(err));
     }
   }
+
+  warningClose() {
+    //this.setState({ showModal: false });
+    $("#warningEventModal").hide();
+  }
 // scr utility api... axios method
   render() {
     return (
       <Container fluid>
+        {!this.state.token ? (
+            <div id="warningEventModal">
+              <Modal.Dialog>
+                    <Modal.Header>
+                      <button type="button" className="close" data-dismiss="modal" onClick={this.warningClose}>&times;</button>
+                      <h4 className="modal-title">Login Warning</h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div>
+                        Please Login to Access Your Saved Events
+                      </div>
+                    </Modal.Body>
+              </Modal.Dialog>
+            </div>
+          ) : (<span></span>
+        )}
         <Row>
           <Col size="md-7">
             <Panel icon="fa fa-list-alt" heading="Enter New Event">
@@ -232,7 +256,7 @@ class Events extends Component {
             </Row>
             <Row>
               {this.state.owner ? (
-                <Panel icon="fa fa-floppy-o" heading="Saved Events">
+                <Panel icon="fa fa-floppy-o" heading="My Saved Events">
                   {this.state.savedEvents.length ? (
                     <List>
                       {this.state.savedEvents.map(event => (

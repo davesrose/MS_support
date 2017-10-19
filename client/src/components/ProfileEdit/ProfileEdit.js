@@ -1,13 +1,16 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router';
+//import { Redirect } from 'react-router';
 import "./ProfileEdit.css";
 import API from "../../utils/API";
 import { Input, Select } from "../../components/Form";
+import { Modal } from "react-bootstrap";
+import $ from "jquery";
 
 class ProfileEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      token: '',
       file: '', 
       name: '',
       _id: '', 
@@ -31,23 +34,19 @@ class ProfileEdit extends Component {
     
   // };
 
-  componentWillMount() {
+  componentDidMount() {
     var token = window.localStorage.getItem('token');
 
     if (token) {
       API.memberInfo(token)
         .then(res => {
-          this.setState({ _id: res.data._id });
+          this.setState({ _id: res.data._id, token: token });
           this.loadProfile();
 
           //Update the Login/log out Button
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
       })
       .catch(err => console.log(err));
-    }
-    else{
-      return (<Redirect to="../Userlogin" />);
-      
     }
   }
 
@@ -156,6 +155,11 @@ class ProfileEdit extends Component {
     reader.readAsDataURL(file)
   }
 
+  close() {
+    //this.setState({ showModal: false });
+    $("#warningModal").hide();
+  }
+
   render() {
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
@@ -167,6 +171,22 @@ class ProfileEdit extends Component {
 
     return (
       <div className="previewComponent">
+        {!this.state.token ? (
+          <div id="warningModal">
+            <Modal.Dialog>
+                  <Modal.Header>
+                    <button type="button" className="close" data-dismiss="modal" onClick={this.close}>&times;</button>
+                    <h4 className="modal-title">Login Warning</h4>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <div>
+                      Please Login to Access this feature
+                    </div>
+                  </Modal.Body>
+            </Modal.Dialog>
+          </div>
+        ) : (<span></span>
+        )}
         <form 
           id="uploadForm"
           method="POST"
