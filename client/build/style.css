@@ -71,10 +71,10 @@ footer {
 }
 .mainNavigation {
 	float: right;
-	padding-top: 30px;
+	padding-top: 45px;
 	height: 100%;
 	/*background-color: #aaa;*/
-	margin-top: -79px;
+	margin-top: -90px;
 }
 .mainNavigation li {
 	margin-top: -29px;
@@ -297,7 +297,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .eventsForm input, .eventsForm textarea {
-	width: 760px;
+	width: 100%;
 	margin-bottom: 10px;
 }
 .eventsForm label {
