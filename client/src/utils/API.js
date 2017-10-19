@@ -17,7 +17,6 @@ export default {
   },
   // Update a profile in the database
   updateProfile: function(id, profileData) {
-    console.log(profileData);
     return axios.put("/api/users/" + id, profileData);
   },
   // Verify the current token
