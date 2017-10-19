@@ -32,7 +32,6 @@ mongoose.Promise = global.Promise;
 // Connect to the Mongo DB
 
 if(process.env.NODE_ENV == 'production'){
-	app.use(express.static('client/build'));
   // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
   mongoose.connect('mongodb://heroku_05rx77hg:120hd257fvqmrnaujg5d8gpcgk@ds125255.mlab.com:25255/heroku_05rx77hg');
 }
@@ -60,7 +59,7 @@ var server = app.listen(PORT2, function(){
 });
 
 // Static files
-app.use(express.static('client/public'));
+//app.use(express.static('client/public'));
 
 
 // Socket setup & pass server
