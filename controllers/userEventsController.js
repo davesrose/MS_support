@@ -1,4 +1,4 @@
-const dbUserEvent = require("../models/userEvent");
+const dbUserEvent = require("../models/userevent");
 
 // Defining methods for the usersController
 module.exports = {
