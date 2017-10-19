@@ -139,7 +139,7 @@ footer {
 	max-width: 1200px;
 }
 #play-pause {
-	background: url("images/play.png");
+	background: url("images/pause.png");
 	background-size: cover;
 	width: 37px;
 	height: 31px;
