@@ -144,8 +144,6 @@ class ProfileEdit extends Component {
 
     let reader = new FileReader();
     let file = e.target.files[0];
-    console.log(e.target);
-    console.log(file.name);
     reader.onloadend = () => {
       this.setState({
         file: file,
