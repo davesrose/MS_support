@@ -4,6 +4,10 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import $ from "jquery";
 
+const submitStyle = {
+  "background-color": "#6c99c9"
+}
+
 class Login extends Component {
   state = {
     user: [],
@@ -73,6 +77,7 @@ class Login extends Component {
                     disabled={!this.state.email || !this.state.password}
                     onClick={this.handleFormSubmit}
                     id="loginSubmit"
+                    style={this.submitStyle}
                   >
                     Submit
                   </FormBtn>
