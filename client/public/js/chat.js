@@ -2,8 +2,8 @@
 // var socket = io.connect("https://dashboard.heroku.com/apps/ms-simple-chat");
 //
 
-var socket = io.connect('http://localhost:4000');
- //var socket = io.connect("https://ms-simple-chat.herokuapp.com/");
+//var socket = io.connect('http://localhost:4000');
+ var socket = io.connect("https://ms-connect.herokuapp.com/");
 
 // Query DOM
 var message = document.getElementById('message'),
