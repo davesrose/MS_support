@@ -260,7 +260,8 @@ class ProfileEdit extends Component {
               value={this.state.categoryDescription}
               onChange={this.handleInputChange}
               name="categoryDescription"
-              placeholder="Fill in only if others selected as Category Description"
+              placeholder="Fill in only if other selected as Category Description"
+              className="other"
             />
             <label className="public">Is Profile Public?: 
             <input

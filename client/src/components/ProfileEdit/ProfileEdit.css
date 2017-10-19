@@ -39,8 +39,8 @@ h3 {
   width: 50%;
   border: none;
   outline: none;
-  padding: 10px;
-  margin: 5px auto 15px;
+  padding: 10px 5px;
+  margin: -8px auto 8px;
   cursor: pointer;
 }
 
@@ -48,6 +48,7 @@ h3 {
   width: 70%;
   padding: 12px;
   margin-left: 15%;
+  margin-bottom: 5%;
   background: #fff;
   border: 1px solid #d3d3d3;
   border-radius: 15px;
@@ -83,4 +84,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e99ea', end
   position: absolute;
   top: 10px;
   left: 140px;
+}
+.other {
+  height: 20px;
+  width: 80%;
+  margin-left: 3%;
+  outline: solid 1px #CCC;
+  border-radius: 15px;
+  margin-top: -15px;
+  font-size: 14px;
 }
