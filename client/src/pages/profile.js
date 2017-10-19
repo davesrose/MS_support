@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import ProfileEdit from "../components/ProfileEdit";
 import { Col, Row, Container } from "../components/Grid";
-import Panel from "../components/Panel";
 
 class Profile extends Component {
 
