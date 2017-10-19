@@ -3,7 +3,7 @@
 //
 
 //var socket = io.connect('http://localhost:4000');
- var socket = io.connect("https://ms-connect.herokuapp.com/");
+ var socket = io.connect("https://davesrose-msconnect.herokuapp.com/");
 
 // Query DOM
 var message = document.getElementById('message'),
