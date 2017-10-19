@@ -159,12 +159,10 @@ class Events extends Component {
 // scr utility api... axios method
   render() {
     return (
-<<<<<<< HEAD
       <div className="eventsContainer">
         <div className="heading">
           <h3 className="text-center">Current Events</h3>
         </div>
-=======
       <Container fluid>
         {!this.state.token ? (
             <div id="warningEventModal">
@@ -182,7 +180,6 @@ class Events extends Component {
             </div>
           ) : (<span></span>
         )}
->>>>>>> 89cbec2337945b106a718c1bb7ee1c3ec55612ae
         <Row>
           <Col size="md-7">
             <div className="panel">
@@ -273,13 +270,9 @@ class Events extends Component {
             </Row>
             <Row>
               {this.state.owner ? (
-<<<<<<< HEAD
                 <div className="panel">
-                <div className="panel-heading"><i className="fa fa-floppy-o"></i>Saved Events</div>
+                <div className="panel-heading"><i className="fa fa-floppy-o"></i>My Saved Events</div>
                 <div className="panel-body">
-=======
-                <Panel icon="fa fa-floppy-o" heading="My Saved Events">
->>>>>>> 89cbec2337945b106a718c1bb7ee1c3ec55612ae
                   {this.state.savedEvents.length ? (
                     <List>
                       {this.state.savedEvents.map(event => (
