@@ -262,14 +262,16 @@ class ProfileEdit extends Component {
               name="categoryDescription"
               placeholder="Fill in only if others selected as Category Description"
             />
-            <label>Is Profile Public:  
+            <label className="public">Is Profile Public?: 
             <input
               value={this.state.publicProfile}
               onChange={this.handleInputChange}
               name="publicProfile"
               type="checkbox"
+              className="publicCheck"
             />
             </label>
+            
             <br />
           </div>
           <div className="rightColumn">

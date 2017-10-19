@@ -23,12 +23,12 @@ h3 {
 }
 .imgPreview .previewText {
   max-width: 400px;
-  height: 600px;
+  height: 400px;
 
 }
 .imgPreview img {
   max-width: 400px;
-  max-height: 600px;
+  max-height: 400px;
 
 }
 .fileInput {
@@ -43,9 +43,7 @@ h3 {
   margin: 5px auto 15px;
   cursor: pointer;
 }
-.fileInput + label {
-  margin-left: 5px;
-}
+
 .submitButton {
   width: 70%;
   padding: 12px;
@@ -75,4 +73,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2e99ea', end
 .centerText {
   text-align: center;
   width: 500px;
+}
+.public {
+  width: 165px;
+  position: relative;
+}
+.publicCheck {
+  width: 15px;
+  position: absolute;
+  top: 10px;
+  left: 140px;
 }
