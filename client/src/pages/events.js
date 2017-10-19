@@ -8,6 +8,10 @@ import DeleteBtn from "../components/DeleteBtn";
 import SaveBtn from "../components/SaveBtn";
 import Panel from "../components/Panel";
 
+const heading = {
+  "background-color": "#6c99c9"
+}
+
 class Events extends Component {
   // Setting the component's initial state
   constructor(props) {
@@ -147,10 +151,15 @@ class Events extends Component {
 // scr utility api... axios method
   render() {
     return (
-      <Container fluid>
+      <div className="eventsContainer">
+        <div className="heading">
+          <h3 className="text-center">Current Events</h3>
+        </div>
         <Row>
           <Col size="md-7">
-            <Panel icon="fa fa-list-alt" heading="Enter New Event">
+            <div className="panel">
+            <div  className="panel-heading"><i className="fa fa-list-alt"></i>Enter New Event</div>
+            <div className="panel-body">
               <form className="eventsForm">
                   <label>Title:</label><br />
                   <Input type="text" 
@@ -211,11 +220,14 @@ class Events extends Component {
                 Submit Event
               </FormBtn>                
               </form>
-            </Panel>
+              </div>
+            </div>
           </Col>
            <Col size="md-5">
             <Row>
-              <Panel icon="fa fa-floppy-o" heading="Events Available">
+              <div className="panel">
+              <div className="panel-heading"><i className="fa fa-floppy-o"></i>Events Available</div>
+              <div className="panel-body">
                 {this.state.events.length ? (
                   <List>
                     {this.state.events.map(event => (
@@ -228,11 +240,14 @@ class Events extends Component {
                 ) : (
                   <h3>No Events Entered</h3>
                 )}
-              </Panel>
+              </div>
+              </div>
             </Row>
             <Row>
               {this.state.owner ? (
-                <Panel icon="fa fa-floppy-o" heading="Saved Events">
+                <div className="panel">
+                <div className="panel-heading"><i className="fa fa-floppy-o"></i>Saved Events</div>
+                <div className="panel-body">
                   {this.state.savedEvents.length ? (
                     <List>
                       {this.state.savedEvents.map(event => (
@@ -245,13 +260,14 @@ class Events extends Component {
                   ) : (
                     <h3>No Saved Events</h3>
                   )}
-                </Panel>
+                  </div>
+                </div>
                 ) : ("")
               }
             </Row>            
           </Col>
         </Row>
-      </Container>
+      </div>
     )
   }
 }
