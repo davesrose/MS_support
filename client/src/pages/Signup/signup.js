@@ -31,12 +31,20 @@ class Signup extends Component {
             password: this.state.password
           })
           .then(res => {
-            this.setState({ user: res.data.response, email: "", password: ""});
-            $("#loginModal").hide();
-            document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
-            
-            //Store the token in a session
-            window.localStorage.setItem('token', res.data.token);
+            if (res.data.success === false) {
+              setTimeout(() => {
+                  alert("This email address has already been registered. Please try another email");
+              }, 1000);
+            }
+            else{
+              this.setState({ user: res.data.response, email: "", password: ""});
+              document.getElementById("signupSubmit").dataset.dismiss = "modal";
+              $("#loginModal").hide();
+              document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
+
+              //Store the token in a session
+              window.localStorage.setItem('token', res.data.token);
+            }
           })
           .catch(err => {
             if (err === "Error: Request failed with status code 422") alert("email already used");
@@ -74,6 +82,7 @@ class Signup extends Component {
                   <FormBtn
                     disabled={!this.state.email}
                     onClick={this.handleFormSubmit}
+                    id="signupSubmit"
                   >
                     Submit
                   </FormBtn>
