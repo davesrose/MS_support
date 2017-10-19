@@ -190,12 +190,14 @@ class Events extends Component {
                   value={this.state.title} 
                   onChange={this.handleInputChange}
                   name = "title" 
+                  required = "true"
                   placeholder="Enter the title of your event" />
                 <label>Date:</label><br />
                 <Input type="datetime-local" 
                   value={this.state.date} 
                   onChange={this.handleInputChange}
                   name = "date"  
+                  required = "true"
                   placeholder="Enter the date of your event" />
 
                 <label>Description:</label><br />

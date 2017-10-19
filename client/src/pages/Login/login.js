@@ -4,9 +4,9 @@ import { Col, Row, Container } from "../../components/Grid";
 import { Input, FormBtn } from "../../components/Form";
 import $ from "jquery";
 
-const submitStyle = {
-  "background-color": "#6c99c9"
-}
+// const submitStyle = {
+//   "background-color": "#6c99c9"
+// }
 
 class Login extends Component {
   state = {
@@ -38,10 +38,7 @@ class Login extends Component {
         } else {
           this.setState({ user: res.data.response, email: "", password: ""});
           document.getElementById("loginSubmit").dataset.dismiss = "modal";
-          //this.setState({ showModal: false });
           $("#loginModal").hide();
-          //isModalOpen: !this.state.isModalOpen;
-          //$("#loginModal").dataset.show = "false";
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
 
           //Store the token in a session

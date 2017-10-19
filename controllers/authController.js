@@ -13,7 +13,8 @@ module.exports = {
         if (err) return res.status(500).send('Error on the server.');
         
         if (!user) {
-          return res.status(404).send({ success: false, message: 'Authentication failed. User not found.' });
+          console.log("user not found");
+          return res.send({ success: false, token: null, message: 'Authentication failed. User not found.' });
         } 
         else {
           // Check if password matches
@@ -31,15 +32,21 @@ module.exports = {
             }
           });
         }
-      });
+      });    
   },
   register: function(req, res) {
     dbUser
-      .create(req.body, function(err) {
+      .create(req.body, function(err, user) {
         if (err) {
-          return res.status(401).json({ success: false, message: 'That email address already exists.'});
+          return res.json({ success: false, message: 'That email address already exists.'});
         }
-          return res.status(200).json({ success: true, message: 'Successfully created new user.'});
+        else{
+          console.log(user);
+          var token = jwt.sign({data: user}, config.secret, {
+            expiresIn: 10080 // in seconds
+          });
+          return res.status(200).json({ success: true, token: 'JWT ' + token, message: 'Successfully created new user.'});
+        }
       }); 
   },
   verifyToken: function(req, res, next) {
