@@ -45,38 +45,38 @@ app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
 
-//var express = require('express');
-var socket = require('socket.io');
-//var path = require('path');
+// //var express = require('express');
+// var socket = require('socket.io');
+// //var path = require('path');
 
 
-// App setup
-var PORT2 = process.env.PORT || 4000;
+// // App setup
+// var PORT2 = process.env.PORT || 4000;
 
-//var app = express();
-var server = app.listen(PORT2, function(){
-    console.log('listening for requests on port 4000,');
-});
+// //var app = express();
+// var server = app.listen(PORT2, function(){
+//     console.log('listening for requests on port 4000,');
+// });
 
-// Static files
-//app.use(express.static('client/public'));
+// // Static files
+// //app.use(express.static('client/public'));
 
 
-// Socket setup & pass server
-var io = socket(server);
-io.on('connection', (socket) => {
+// // Socket setup & pass server
+// var io = socket(server);
+// io.on('connection', (socket) => {
 
-    console.log('made socket connection', socket.id);
+//     console.log('made socket connection', socket.id);
 
-    // Handle chat event
-    socket.on('chat', function(data){
-        // console.log(data);
-        io.sockets.emit('chat', data);
-    });
+//     // Handle chat event
+//     socket.on('chat', function(data){
+//         // console.log(data);
+//         io.sockets.emit('chat', data);
+//     });
 
-    // Handle typing event
-    socket.on('typing', function(data){
-        socket.broadcast.emit('typing', data);
-    });
+//     // Handle typing event
+//     socket.on('typing', function(data){
+//         socket.broadcast.emit('typing', data);
+//     });
 
-});
+// });
