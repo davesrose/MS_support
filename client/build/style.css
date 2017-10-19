@@ -106,7 +106,7 @@ footer {
 
 .logIn {
 	position: absolute;
-	background: #6c99c9;
+	background: #589fdb;
 	margin-top: -10px;
 	height: 30px;
 	width: 140px;
@@ -429,5 +429,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 
 #loginSubmit {
 	margin-bottom: 10px;
-	background: #6c99c9;
+}
+.eventsContainer {
+	width: 90%;
+	margin-left: 5%;
+}
+.panel-heading {
+	background: #236cba;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}
+.panel-heading i {
+	margin-right: 1.5%;
 }

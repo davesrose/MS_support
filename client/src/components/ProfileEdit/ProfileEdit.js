@@ -187,99 +187,107 @@ class ProfileEdit extends Component {
           </div>
         ) : (<span></span>
         )}
-        <form 
-          id="uploadForm"
-          method="POST"
-          action="/upload"
-          formEncType="multipart/form-data" 
-          onSubmit={(e)=>this._handleSubmit(e)}>
-          <Input
-            disabled="true"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-            name="email"
-            type="email"
-          />
-          <Input
-            disabled="true"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-            name="password"
-            type="password"
-          />          
-          <Input
-            value={this.state.firstName}
-            onChange={this.handleInputChange}
-            name="firstName"
-            placeholder="First Name"
-          />
-          <Input
-            value={this.state.lastName}
-            onChange={this.handleInputChange}
-            name="lastName"
-            placeholder="Last Name"
-          />
-          <Input
-            value={this.state.zipCode}
-            onChange={this.handleInputChange}
-            name="zipCode"
-            placeholder="zip Code"
-          />
-          <label>Age Range:
-            <Select value={this.state.ageRange} name="ageRange" onChange={this.handleInputChange}>
-              <option value="">Prefer Not to Say</option>
-              <option value="0">18 and under</option>
-              <option value="19">19 - 29</option>
-              <option value="30">30 - 39</option>
-              <option value="40">40 - 49</option>
-              <option value="50">50 - 59</option>
-              <option value="60">60 and Over</option>
-            </Select>
-          </label>
-          <br />          
-          <label>Sex:
-            <Select value={this.state.sex} name="sex" onChange={this.handleInputChange}>
-              <option value="">Prefer Not to Say</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </Select>
-          </label>
-          <br />
-          <label>Category: 
-            <Select value={this.state.userCategory} name="userCategory" onChange={this.handleInputChange}>
-              <option value="">Prefer Not to Say</option>
-              <option value="Patient">Patient</option>
-              <option value="Friend">Friend</option>
-              <option value="Family">Family</option>
-              <option value="Other">Other</option>
-            </Select>
-          </label>
-          <Input
-            value={this.state.categoryDescription}
-            onChange={this.handleInputChange}
-            name="categoryDescription"
-            placeholder="Fill in only if others selected as Category Description"
-          />
-          <label>Is Profile Public:  
-          <input
-            value={this.state.publicProfile}
-            onChange={this.handleInputChange}
-            name="publicProfile"
-            type="checkbox"
-          />
-          </label>
-          <br />
-          <input className="fileInput" 
-            type="file" name="userPhoto"
-            onChange={(e)=>this._handleImageChange(e)} />
-          <button className="submitButton" 
-            type="submit" 
-            onClick={(e)=>this._handleSubmit(e)}>Upload image and Update profile
-          </button>
-        </form>
-        <div className="imgPreview">
-          {$imagePreview}
-        </div>
+        
+          <form 
+            id="uploadForm"
+            method="POST"
+            action="/upload"
+            formEncType="multipart/form-data" 
+            onSubmit={(e)=>this._handleSubmit(e)}>
+            <div className="leftColumn">
+            <Input
+              disabled="true"
+              value={this.state.email}
+              onChange={this.handleInputChange}
+              name="email"
+              type="email"
+            />
+            <Input
+              disabled="true"
+              value={this.state.password}
+              onChange={this.handleInputChange}
+              name="password"
+              type="password"
+            />          
+            <Input
+              value={this.state.firstName}
+              onChange={this.handleInputChange}
+              name="firstName"
+              placeholder="First Name"
+            />
+            <Input
+              value={this.state.lastName}
+              onChange={this.handleInputChange}
+              name="lastName"
+              placeholder="Last Name"
+            />
+            <Input
+              value={this.state.zipCode}
+              onChange={this.handleInputChange}
+              name="zipCode"
+              placeholder="zip Code"
+            />
+            <label>Age Range:
+              <Select value={this.state.ageRange} name="ageRange" onChange={this.handleInputChange}>
+                <option value="">Prefer Not to Say</option>
+                <option value="0">18 and under</option>
+                <option value="19">19 - 29</option>
+                <option value="30">30 - 39</option>
+                <option value="40">40 - 49</option>
+                <option value="50">50 - 59</option>
+                <option value="60">60 and Over</option>
+              </Select>
+            </label>
+            <br />          
+            <label>Sex:
+              <Select value={this.state.sex} name="sex" onChange={this.handleInputChange}>
+                <option value="">Prefer Not to Say</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </Select>
+            </label>
+            <br />
+            <label>Category: 
+              <Select value={this.state.userCategory} name="userCategory" onChange={this.handleInputChange}>
+                <option value="">Prefer Not to Say</option>
+                <option value="Patient">Patient</option>
+                <option value="Friend">Friend</option>
+                <option value="Family">Family</option>
+                <option value="Other">Other</option>
+              </Select>
+            </label>
+            <Input
+              value={this.state.categoryDescription}
+              onChange={this.handleInputChange}
+              name="categoryDescription"
+              placeholder="Fill in only if others selected as Category Description"
+            />
+            <label className="public">Is Profile Public?: 
+            <input
+              value={this.state.publicProfile}
+              onChange={this.handleInputChange}
+              name="publicProfile"
+              type="checkbox"
+              className="publicCheck"
+            />
+            </label>
+            
+            <br />
+          </div>
+          <div className="rightColumn">
+            <div className="imgPreview">
+              {$imagePreview}
+            </div>
+            <input className="fileInput" 
+              type="file" name="userPhoto"
+              onChange={(e)=>this._handleImageChange(e)} />
+            <button className="submitButton" 
+              type="submit" 
+              onClick={(e)=>this._handleSubmit(e)}>Upload image and Update profile
+            </button>
+            
+          </div>
+          </form>
       </div>
     )
   }
