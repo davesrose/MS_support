@@ -7,15 +7,23 @@ class Profile extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-10 md-offset-1">
-            <Panel icon="fa fa-user-circle-o" heading="Edit Profile">
-              <ProfileEdit />
-            </Panel>
-          </Col>
-        </Row>
-      </Container>
+      <div className="containerProfile">
+        <div className="heading">
+          <h3 className="text-center">Your Profile</h3>
+        </div>
+        <Container fluid>
+          <Row>
+            <Col size="md-10 md-offset-1">
+              <div className="panel">
+                <div className="panel-heading"><i className="fa fa-user-circle-o"></i>Edit Profile</div>
+                <div className="panel-body">
+                  <ProfileEdit />
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 	  )
 	}
 	

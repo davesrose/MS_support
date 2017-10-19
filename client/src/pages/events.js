@@ -163,7 +163,6 @@ class Events extends Component {
         <div className="heading">
           <h3 className="text-center">Current Events</h3>
         </div>
-      <Container fluid>
         {!this.state.token ? (
             <div id="warningEventModal">
               <Modal.Dialog>
