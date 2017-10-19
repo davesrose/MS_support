@@ -4,15 +4,10 @@ import API from "../utils/API";
 import { Modal } from "react-bootstrap";
 import $ from "jquery";
 import { Input, FormBtn } from "../components/Form";
-import { Col, Row, Container } from "../components/Grid";
+import { Col, Row } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import DeleteBtn from "../components/DeleteBtn";
 import SaveBtn from "../components/SaveBtn";
-import Panel from "../components/Panel";
-
-const heading = {
-  "background-color": "#6c99c9"
-}
 
 class Events extends Component {
   // Setting the component's initial state
