@@ -427,6 +427,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', end
 	padding-left: : 300px;
 }
 
+.modal-header .close {
+    padding-left: 550px;
+}
+
 #loginSubmit {
 	margin-bottom: 10px;
 }

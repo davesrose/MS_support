@@ -7,7 +7,8 @@ class Nav extends Component {
   constructor () {
     super()
     this.state = {
-      isLoginHidden: true
+      isLoginHidden: true,
+      isMessageLogout: false
     }
   }
 
@@ -18,6 +19,9 @@ class Nav extends Component {
 
     //Either Logout or Log in Customers as needed
     if (document.getElementById("logInBttn").innerHTML === "<p>Log Out</p>"){
+      this.setState({
+        isMessageLogout: true
+      })
       $("#loginModal").hide();
       document.getElementById("logInBttn").innerHTML = "<p>Log In</p>";
 
@@ -57,7 +61,7 @@ class Nav extends Component {
           </ul>
         <div className="clear"></div>
         <div className="logIn" id="logInBttn" data-toggle="modal" data-target="#loginModalBox" onClick={this.toggleHidden.bind(this)}><p>Log In</p></div>
-          {!this.state.isLoginHidden && <UserLogin />}
+          {(!this.state.isLoginHidden && !this.state.isMessageLogout)  && <UserLogin />}
       </nav>
     )
   }
