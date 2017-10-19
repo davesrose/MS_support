@@ -27,6 +27,10 @@ const userSchema = new Schema({
      type: String,
      required: true
    },
+   ageRange: {
+    type: Number,
+    required: false
+   },   
    userCategory: {
     type: String,
     required: false
