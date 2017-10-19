@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router';
 import API from "../utils/API";
+import { Modal } from "react-bootstrap";
+import $ from "jquery";
 import { Input, FormBtn } from "../components/Form";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
@@ -17,6 +19,7 @@ class Events extends Component {
   constructor(props) {
     super(props);
     this.state = {
+        token: "",
         events: [],
         savedEvents: [],
         title: "",
@@ -40,7 +43,7 @@ class Events extends Component {
     if (token) {
       API.memberInfo(token)
         .then(res => {
-          this.setState({ owner: res.data._id });
+          this.setState({ owner: res.data._id, token: token });
           //Update the Login/log out Button
           document.getElementById("logInBttn").innerHTML = "<p>Log Out</p>";
 
@@ -148,13 +151,38 @@ class Events extends Component {
       .catch(err => console.log(err));
     }
   }
+
+  warningClose() {
+    //this.setState({ showModal: false });
+    $("#warningEventModal").hide();
+  }
 // scr utility api... axios method
   render() {
     return (
+<<<<<<< HEAD
       <div className="eventsContainer">
         <div className="heading">
           <h3 className="text-center">Current Events</h3>
         </div>
+=======
+      <Container fluid>
+        {!this.state.token ? (
+            <div id="warningEventModal">
+              <Modal.Dialog>
+                    <Modal.Header>
+                      <button type="button" className="close" data-dismiss="modal" onClick={this.warningClose}>&times;</button>
+                      <h4 className="modal-title">Login Warning</h4>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div>
+                        Please Login to Access Your Saved Events
+                      </div>
+                    </Modal.Body>
+              </Modal.Dialog>
+            </div>
+          ) : (<span></span>
+        )}
+>>>>>>> 89cbec2337945b106a718c1bb7ee1c3ec55612ae
         <Row>
           <Col size="md-7">
             <div className="panel">
@@ -245,9 +273,13 @@ class Events extends Component {
             </Row>
             <Row>
               {this.state.owner ? (
+<<<<<<< HEAD
                 <div className="panel">
                 <div className="panel-heading"><i className="fa fa-floppy-o"></i>Saved Events</div>
                 <div className="panel-body">
+=======
+                <Panel icon="fa fa-floppy-o" heading="My Saved Events">
+>>>>>>> 89cbec2337945b106a718c1bb7ee1c3ec55612ae
                   {this.state.savedEvents.length ? (
                     <List>
                       {this.state.savedEvents.map(event => (

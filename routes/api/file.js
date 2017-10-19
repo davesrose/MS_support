@@ -79,7 +79,7 @@ router.route("/upload")
     
 		const myBucket = 'msconnect';
 		const myKey = 'images/' + req.file.originalname;
-		const signedUrlExpireSeconds = 36000;
+		const signedUrlExpireSeconds = 14400; //Link Available for 10 days
 
 		const url = s3.getSignedUrl('getObject', {
 		    Bucket: myBucket,
