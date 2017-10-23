@@ -15,6 +15,8 @@ David Rosenberg : Front End Development and animation
 
 Hajar Zemzem : Events Page, [https://github.com/hzemzem//](https://github.com/hzemzem//)
 
+Richard Fenix: Events Page [https://github.com/rfenix3](https://github.com/rfenix3)
+
 ## Technologies Used
 
    - Mongoose, Express, React, Node
